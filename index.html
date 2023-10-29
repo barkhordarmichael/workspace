@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worsksace</title>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="main.js"></script>
+</head>
+<body>
+      
+      </div>
+        <marquee class="bg-light text-dark link-danger">Business use ... Valid TAX, MOT, Insurance</marquee>
+        <nav class="navbar">
+        
+          <ul class="nav justify-content-center">
+            <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            FLR Terms
+          </button>
+          <ul class="dropdown-menu w-25 fs-5">
+            <h5>Your upgrade remains free, as long you keep your policy with a minimum roadside rescue cover</h5>
+          </ul>
+        </div>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle mx-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            FLR Terms
+          </button>
+          <ul class="dropdown-menu w-25 fs-5">
+            <h5>Your upgrade remains free, as long you keep your policy with a minimum roadside rescu cover</h5>
+          </ul>
+        </div>
+           
+              <li>
+                  <a class="button" href="https://www.rac.co.uk/breakdown-cover/join-uk-breakdown/build-package/people-or-vehicles?version=standard-unlimited" target="_blank">Launch RAC</a>
+              </li>
+              <li>
+                  <a class="button" href="https://www.theaa.com/breakdown-cover/uk" target="_blank">Launch AA</a>
+              </li>
+              <li>
+                  <a class="button" href="https://racfreedom.sharepoint.com/ba/SnM/SnS/Knowledge%20Base/Essential%20Telephone%20Numbers.aspx?OR=Teams-HL&CT=1628147822880" target="_blank">Usefull numbers</a>
+              </li>
+              <li>
+                  <a class="button" href="http://pgbge1pvp001/EcarWebpage/ECarMain.aspx" target="_blank">Ecars</a>
+              </li>
+              <li>
+                  <a class="button" href="https://www.rac.co.uk/breakdown-cover/enjoymore" target="_blank">Member benfits</a>
+              </li>
+            
+          
+</nav>
+        
+        
+        
+        </ul>
+        </nav>
+  <div><input type="text" id="clock"></div>   
+        
+            
+              <div class="grid-container">
+                  <div>
+                      <table class="table mb-3">
+                  
+                  <tr>
+                  <td></td>
+                  <td>Premium</td>
+                  <td>Calculations</td>
+                  <td>Results</td>
+                            <td>Monthly/12</td>
+                  
+              </tr>
+              <tr>
+                  <td>Override</td>
+                  <td><input type="text" id="copyOfPremium" size="10" placeholder="Premium1"></td>
+                    <td><input type="text" id="aaf" size="10" placeholder="AAF" onfocusout="calculateOverride()"></td>
+                    
+                  <td><input type="text" id="result" placeholder="results"></td>
+                  <td style="size:15"><input type="text" id="monthly1" size="15" placeholder="results"> </td>
+              </tr>
+              <tr>
+                  <td>Divide</td>
+                  <td><input id="premium"type="text"></td>
+                  <td><input id="division" onfocusout="calculateDivision()"type="text"></td>
+                  <td><input id="output"type="text"></td>
+                  <td><input type="text" id="monthly2" size="15" placeholder="results"> </td>
+              </tr>
+              <tr>
+                  <td>Discount</td>
+                  <td><input type="text" id="premium2" size="10" placeholder="Premium"></td>
+                    <td><input type="text" id="discountPercentage" size="10" placeholder="Discount" onfocusout="calculateDiscount()"></td>
+                    <td><input type="text" id="discount" size="10"></td>
+                  <td><input type="text" id="monthly3" size="15" placeholder="results"> </td>
+              </tr>
+              <tr>
+                  <td>Extra Months</td>
+                  <td><input id="months" type="text"></td>
+                  <td><input id= "noOfMonths" onfocusout="calculateExtraMonths()"type="text"></td>
+                  <td><input id="extraMonths" onfocusout="calculateExtraMonths()"type="text"></td>
+                  <td><input type="text" id="monthly4" size="15" placeholder="results"> </td>
+              </tr>
+              <tr>
+                  <td>Web/Quote</td>
+                  <td><input id ="quote" type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text"></td>
+                  <td><input type="text" id="monthly5" size="15" placeholder="results"> </td>
+              </tr>
+              <tr>
+                  <td>Today's date</td>
+                  <td>Renewal date</td>
+              </tr>
+              <tr>
+              
+            <td><input type="date" id="date-input" style="width:100px"size="11" default="today"></td>
+                <td><input type="date" id="date2-input" style="width:100px"size="11"></td>
+                <td><input type="text" id="days" style="width:80px"size="3" placeholder="days"></td>
+                <td colspan="2"><button class="d-block rounded" id="submit" type="submit" onclick="calculateDays()">COP</button></td>
+            </tr>
+              
+              
+                  
+                  </table>
+          
+          
+                  <div class="grid-container">
+                    <div>
+                <label style="font-size:16px">Callbacks</label>
+                      
+                <table class="callbacks">
+          
+                  <tr>
+                    <td><button class="d-block rounded" type="button" onclick="myFunction()"> Check happy with quote</button>
+                      <input type="text" id="happyWithQuote" value="Check happy with quote" style="display:none"></td>
+                       <td><button class="d-block rounded" type="button" onclick="myFunction2()"> Call to take payment</button>
+                      <input type="text" id="takePayment" value="Callback to take payment" style="display:none"></td>
+                  </tr>
+                 
+                  <tr>
+                    <td><button class="d-block rounded" type="button" onclick="myFunction3()">Review quote</button><input type="text" id="reviewQuote" value="Review quote" style="display:none"></td>
+                     <td><button class="d-block rounded" type="button" onclick="myFunction4()"> Check received docs</button>
+                      <input type="text" id="receivedDocs" value="Check received docs" style="display:none"></td>
+                  </tr>
+                  
+                  <tr>
+                    <td><button class="d-block rounded" type="button" onclick="myFunction5()"> Callback arranged</button>
+                      <input type="text" id="callBack" value="Callback arranged" style="display:none"></td>
+                  </tr>
+           
+                </table>
+                 <textarea class="container-fluid"  row="100" col="100" name="textarea"></textarea>
+                </div>
+                
+              
+                  </div>
+                </div>
+                            
+              
+                  
+              
+        
+                    <iframe  src="https://apps.powerapps.com/play/e/default-daf62abb-9a6c-4f5d-b141-a1c95a4ead9d/a/b5a8af2c-82ee-462f-8652-d8297fbd1425?tenantId=daf62abb-9a6c-4f5d-b141-a1c95a4ead9d&source=portal&screenColor=rgba%2881%2C+92%2C+107%2C+1%29&skipAppMetadata=true#%23%23%23%23%23%23">
+                    
+                    </iframe>
+                  </div>
+                            
+                  <div style="margin-top:60px">
+                  <!-- Cisco screen
+                  <object type="text/html" data="https://pgbco1vfn001.ucce.rac.local:8445/desktop/container/?locale=en_US" width="800px" height="400px" style="overflow:auto;border:5px ridge blue" padding="0">
+              </object> -->
+                    <!--
+                    <iframe src="https://pgbco1vfn001.ucce.rac.local:8445/desktop/container/?error=true" width="800px" height="400px"></iframe>
+                    -->
+        <br><br>
+                    <iframe src="http://10.62.20.80/manager/report/report.html?report=Agent+Productivity#"></iframe>
+                    
+                  </div>
+                          
+</body>
+</html>
