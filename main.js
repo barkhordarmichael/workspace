@@ -24,7 +24,9 @@ function appendDigit(digit) {
 let a = document.getElementById("copyOfPremium").value
 document.getElementById("premium").value = a
 document.getElementById("premium2").value = a
-  document.getElementById("months").value = a
+document.getElementById("months").value = a
+document.getElementById('quote').value = a
+
 const z = 1.12
 var aff = document.getElementById("aaf").value
 var overRideValue = a - aff
@@ -34,10 +36,12 @@ document.getElementById("result").value = (overRideValue / z).toFixed(2)
   document.getElementById("monthly3").value= (a/12).toFixed(2);
   document.getElementById("monthly4").value= (a/12).toFixed(2);
   document.getElementById("monthly5").value= (a/12).toFixed(2);
+  document.getElementById("price_diff").value = diff;
   
   
   
 }
+
 function calculateExtraMonths(){
 let nOfMonths = document.getElementById("noOfMonths").value
 let premium = document.getElementById("months").value
@@ -65,19 +69,21 @@ var result = (discount / 100) * a;
 document.getElementById("discount").value = a - result.toFixed(2);
 console.log(result)
 }
-var today = new Date();
-var dd = String(today.getDate()).padStart(2, '0');
-var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-var yyyy = today.getFullYear();
 
-today = dd + '/' + mm + '/' + yyyy;
-/*document.write(today);*/
-
-setInterval(timer, 1000)
-function timer(){
-const d = new Date();
-document.getElementById("clock").value = d;
+function calculateDiffInprice(){
+  const diff = document.getElementById('quote').value - document.getElementById('web').value 
+  
+  document.getElementById('price_diff').value=diff;
 }
+function updateTime() {
+	const now = new Date();
+	const hours = now.getHours().toString().padStart(2, '0');
+	const minutes = now.getMinutes().toString().padStart(2, '0');
+	const seconds = now.getSeconds().toString().padStart(2, '0');
+	const timeString = `${hours}:${minutes}:${seconds}`;
+	document.getElementById('clocky').innerHTML = timeString
+}
+setInterval(updateTime, 1000);
 
 function myFunction() {
 /* Get the text field */
@@ -146,7 +152,7 @@ copyText.setSelectionRange(0, 99999); /* For mobile devices */
 navigator.clipboard.writeText(copyText.value+" called:  "+today);
 console.log(copyText.value)
 }
-
+/*
 Date.prototype.toDateInputValue = (function() {
 var local = new Date(this);
 local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
@@ -185,7 +191,7 @@ $('#submit').on('click', function() {
 
 })
 }
-
+*/
 
 let saveRate
 let runningSave
@@ -300,4 +306,18 @@ var accrual = parseFloat(sales) + parseFloat(sales)
 //accrual = document.getElementById("moneyPot").value
 document.getElementById("moneyPot").innerHTML = accrual
 
+}
+
+function flrPopup(){
+  document.querySelector('.dropdown-box').style.display="block";
+ 
+}
+function flrClear(){
+  document.querySelector('.dropdown-box').style.display="none";
+}
+function monthExt(){
+  document.querySelector('#month_ext_dropdown').style.display="block";
+}
+function monthExtClear(){
+  document.querySelector('#month_ext_dropdown').style.display="none";;
 }

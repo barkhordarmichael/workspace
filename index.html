@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Worsksace</title>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="style.css">
     
@@ -14,26 +14,50 @@
 </head>
 <body>
       
-      </div>
-        <marquee class="bg-light text-dark link-danger">Business use ... Valid TAX, MOT, Insurance</marquee>
-        <nav class="navbar">
+      
+        <!--<marquee class="bg-light text-dark link-danger">Business use ... Valid TAX, MOT, Insurance</marquee>-->
+        <nav>
+          <ul>
+            <li id="flr" class="btn" onmouseover="flrPopup()" onmouseout="flrClear()">FLR Terms
+              <ul class="dropdown-box">
+                <li><p>Your upgrade will start on your renewal date or within [reward product exclusion days] from today.<br>
+                  Your upgrade will remain providing you keep your existing policy with a minimum of Roadside cover.<br>
+                  You will lose your upgrade if you change to a different policy with different membership terms or cancel the membership.</p></li>
+              </ul>
+            </li>
+            <li id="month_ext" class="btn" onmouseover="monthExt()" onmouseleave="monthExtClear()">Extension terms
+              <ul>
+                <li id="month_ext_dropdown" class="dropdown-box">
+                  <p>If you choose to cancel your policy or downgrade within the first 12 months you will lose this benefit and not be able to re-claim or re-start the policy extension.<br>
+                    The policy extension will be added at month 13. If you pay on a rolling monthly basis, you must make 12 consecutive payments at full price, and must have active cover at month 12.
+                    </p>
+                </li>
+              </ul>
+            </li>
+            <li class="btn"><a href="https://www.rac.co.uk/breakdown-cover/join-uk-breakdown/build-package/people-or-vehicles?version=standard-unlimited" target="_blank">Launch RAC</a></li>
+            <li class="btn"><a href="https://www.theaa.com/breakdown-cover/uk" target="_blank">Launch AA</a></li>
+            <li class="btn"><a href="https://racfreedom.sharepoint.com/ba/SnM/SnS/Knowledge%20Base/Essential%20Telephone%20Numbers.aspx?OR=Teams-HL&CT=1628147822880" target="_blank">Usefull numbers</a></li>
+            <li class="btn"><a href="http://pgbge1pvp001/EcarWebpage/ECarMain.aspx" target="_blank">Ecars</a></li>
+            <li class="btn"><a href="https://www.rac.co.uk/breakdown-cover/enjoymore" target="_blank">Member benfits</a></li>
+           <li class="btn_clock" id="clocky"></li>
+          </ul>
         
-          <ul class="nav justify-content-center fw-200">
-            <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <!--<ul class="nav justify-content-center">
+            
+          <button class="btn">
             FLR Terms
           </button>
-          <ul class="dropdown-menu p-1 dropdown-box">
+          <ul class="dropdown-box">
             <p>Your upgrade will start on your renewal date or within [reward product exclusion days] from today.<br>
               Your upgrade will remain providing you keep your existing policy with a minimum of Roadside cover.<br>
               You will lose your upgrade if you change to a different policy with different membership terms or cancel the membership.</p>
           </ul>
         </div>
         <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle mx-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <button class="btn">
             Extension terms
           </button>
-          <ul class="dropdown-menu p-1 dropdown-box">
+          <ul class="dropdown-box">
             <p>If you choose to cancel your policy or downgrade within the first 12 months you will lose this benefit and not be able to re-claim or re-start the policy extension.<br>
           The policy extension will be added at month 13. If you pay on a rolling monthly basis, you must make 12 consecutive payments at full price, and must have active cover at month 12.
           </p>
@@ -41,21 +65,22 @@
         </div>
            <ul>
               <li>
-                  <a class="button" href="https://www.rac.co.uk/breakdown-cover/join-uk-breakdown/build-package/people-or-vehicles?version=standard-unlimited" target="_blank">Launch RAC</a>
+                  <a class="btn" href="https://www.rac.co.uk/breakdown-cover/join-uk-breakdown/build-package/people-or-vehicles?version=standard-unlimited" target="_blank">Launch RAC</a>
               </li>
               <li>
-                  <a class="button" href="https://www.theaa.com/breakdown-cover/uk" target="_blank">Launch AA</a>
+                  <a class="btn" href="https://www.theaa.com/breakdown-cover/uk" target="_blank">Launch AA</a>
               </li>
               <li>
-                  <a class="button" href="https://racfreedom.sharepoint.com/ba/SnM/SnS/Knowledge%20Base/Essential%20Telephone%20Numbers.aspx?OR=Teams-HL&CT=1628147822880" target="_blank">Usefull numbers</a>
+                  <a class="btn" href="https://racfreedom.sharepoint.com/ba/SnM/SnS/Knowledge%20Base/Essential%20Telephone%20Numbers.aspx?OR=Teams-HL&CT=1628147822880" target="_blank">Usefull numbers</a>
               </li>
               <li>
-                  <a class="button" href="http://pgbge1pvp001/EcarWebpage/ECarMain.aspx" target="_blank">Ecars</a>
+                  <a class="btn" href="http://pgbge1pvp001/EcarWebpage/ECarMain.aspx" target="_blank">Ecars</a>
               </li>
               <li>
-                  <a class="button" href="https://www.rac.co.uk/breakdown-cover/enjoymore" target="_blank">Member benfits</a>
+                  <a class="btn" href="https://www.rac.co.uk/breakdown-cover/enjoymore" target="_blank">Member benfits</a>
               </li>
             </ul>
+          -->
           
 </nav>
         
@@ -63,7 +88,7 @@
         
         </ul>
         </nav>
-  <div><input type="text" id="clock"></div>   
+  <div>  
         
             
               <div class="grid-container">
@@ -89,7 +114,7 @@
               <tr>
                   <td>Divide</td>
                   <td><input id="premium"type="text"></td>
-                  <td><input id="division" onfocusout="calculateDivision()"type="text"></td>
+                  <td><input id="division" onfocusout="calculateDivision()"type="text" value="12"></td>
                   <td><input id="output"type="text"></td>
                   <td><input type="text" id="monthly2" size="15" placeholder="results"> </td>
               </tr>
@@ -103,28 +128,18 @@
               <tr>
                   <td>Extra Months</td>
                   <td><input id="months" type="text"></td>
-                  <td><input id= "noOfMonths" onfocusout="calculateExtraMonths()"type="text"></td>
+                  <td><input id= "noOfMonths" onfocusout="calculateExtraMonths()"type="text" value="12"></td>
                   <td><input id="extraMonths" onfocusout="calculateExtraMonths()"type="text"></td>
                   <td><input type="text" id="monthly4" size="15" placeholder="results"> </td>
               </tr>
               <tr>
                   <td>Web/Quote</td>
                   <td><input id ="quote" type="text"></td>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td>
+                  <td><input id ="web" onfocusout="calculateDiffInprice()" type="text"></td>
+                  <td><input id="price_diff" type="text"></td>
                   <td><input type="text" id="monthly5" size="15" placeholder="results"> </td>
               </tr>
-              <tr>
-                  <td>Today's date</td>
-                  <td>Renewal date</td>
-              </tr>
-              <tr>
               
-            <td><input type="date" id="date-input" style="width:100px"size="11" default="today"></td>
-                <td><input type="date" id="date2-input" style="width:100px"size="11"></td>
-                <td><input type="text" id="days" style="width:80px"size="3" placeholder="days"></td>
-                <td colspan="2"><button class="d-block rounded" id="submit" type="submit" onclick="calculateDays()">COP</button></td>
-            </tr>
               
               
                   
@@ -138,25 +153,25 @@
                 <table class="callbacks">
           
                   <tr>
-                    <td><button class="d-block rounded" type="button" onclick="myFunction()"> Check happy with quote</button>
+                    <td><button class="btn" type="button" onclick="myFunction()"> Check happy with quote</button>
                       <input type="text" id="happyWithQuote" value="Check happy with quote" style="display:none"></td>
-                       <td><button class="d-block rounded" type="button" onclick="myFunction2()"> Call to take payment</button>
+                       <td><button class="btn" type="button" onclick="myFunction2()"> Call to take payment</button>
                       <input type="text" id="takePayment" value="Callback to take payment" style="display:none"></td>
                   </tr>
                  
                   <tr>
-                    <td><button class="d-block rounded" type="button" onclick="myFunction3()">Review quote</button><input type="text" id="reviewQuote" value="Review quote" style="display:none"></td>
-                     <td><button class="d-block rounded" type="button" onclick="myFunction4()"> Check received docs</button>
+                    <td><button class="btn" type="button" onclick="myFunction3()">Review quote</button><input type="text" id="reviewQuote" value="Review quote" style="display:none"></td>
+                     <td><button class="btn type="button" onclick="myFunction4()"> Check received docs</button>
                       <input type="text" id="receivedDocs" value="Check received docs" style="display:none"></td>
                   </tr>
                   
                   <tr>
-                    <td><button class="d-block rounded" type="button" onclick="myFunction5()"> Callback arranged</button>
+                    <td><button class="btn" type="button" onclick="myFunction5()"> Callback arranged</button>
                       <input type="text" id="callBack" value="Callback arranged" style="display:none"></td>
                   </tr>
            
                 </table>
-                 <textarea class="container-fluid"  row="100" col="100" name="textarea"></textarea>
+                 <textarea row="100" col="100" name="textarea"></textarea>
                 </div>
                 
               
@@ -172,7 +187,7 @@
                     </iframe>
                   </div>
                             
-                  <div style="margin-top:60px">
+                  <div style="margin-top:10px">
                   <!-- Cisco screen
                   <object type="text/html" data="https://pgbco1vfn001.ucce.rac.local:8445/desktop/container/?locale=en_US" width="800px" height="400px" style="overflow:auto;border:5px ridge blue" padding="0">
               </object> -->
