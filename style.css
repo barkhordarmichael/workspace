@@ -33,6 +33,7 @@ nav ul{
 	color: #fff;
 	text-decoration: none;
 	padding: 5px;
+	justify-content: center;
 	
 }
 
@@ -81,7 +82,7 @@ nav ul{
       cursor: pointer; 
 	  text-align: center;
 	  text-decoration: none;
-	  padding: 5px;
+	  
 	  color: #fff;
 	  font-weight: 100;
 	  font-size: 12px;
