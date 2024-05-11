@@ -123,9 +123,10 @@ a:active{
 }
 input[type=text] {
   width: 100%;
-	box-sizing: border-box;
+  box-sizing: border-box;
   background-color: whitesmoke;
   color: black;
+  
 	
 
  
@@ -135,17 +136,20 @@ textarea{
 	width: 100%;
 	resize: none;
 	margin-top: 5px;
+	padding: 10px;
 	
 }
 
 input, button{
 	height: 4vh;
 	font-size: 12px;
+	
 }
 
 td{
 	width: 50px;
 	text-align: left;
+	
 }
 
 div{

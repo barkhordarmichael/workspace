@@ -84,6 +84,10 @@ function updateTime() {
 	document.getElementById('clocky').innerHTML = timeString
 }
 setInterval(updateTime, 1000);
+const d = new Date()
+const date = d.getDate();
+
+const today = d.toLocaleDateString();
 
 function myFunction() {
 /* Get the text field */
