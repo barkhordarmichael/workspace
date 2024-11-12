@@ -99,7 +99,7 @@ copyText.setSelectionRange(0, 99999); /* For mobile devices */
 
 /* Copy the text inside the text field */
   
-navigator.clipboard.writeText(copyText.value+" called:  "+today);
+navigator.clipboard.writeText(copyText.value+ " £"+document.getElementById("copyOfPremium").value);
 document.execCommand("happyWithQuote");
 console.log(copyText.value);
   
@@ -114,7 +114,7 @@ copyText2.select();
 copyText2.setSelectionRange(0, 99999); /* For mobile devices */
 
 /* Copy the text inside the text field */
-navigator.clipboard.writeText(copyText2.value+" called:  "+today);
+navigator.clipboard.writeText(copyText2.value);
 console.log(copyText2.value)
 /* Alert the copied text */
 //alert("Copied the text: " + copyText.value);
@@ -129,7 +129,7 @@ copyText.select();
 copyText.setSelectionRange(0, 99999); /* For mobile devices */
 
 /* Copy the text inside the text field */
-navigator.clipboard.writeText(copyText.value+" called:  "+today);
+navigator.clipboard.writeText(copyText.value);
 console.log(copyText.value)
 }
 function myFunction4() {
@@ -141,7 +141,7 @@ copyText.select();
 copyText.setSelectionRange(0, 99999); /* For mobile devices */
 
 /* Copy the text inside the text field */
-navigator.clipboard.writeText(copyText.value+" called:  "+today);
+navigator.clipboard.writeText(copyText.value);
 console.log(copyText.value)
 }
 function myFunction5() {
@@ -153,7 +153,7 @@ copyText.select();
 copyText.setSelectionRange(0, 99999); /* For mobile devices */
 
 /* Copy the text inside the text field */
-navigator.clipboard.writeText(copyText.value+" called:  "+today);
+navigator.clipboard.writeText(copyText.value);
 console.log(copyText.value)
 }
 /*
