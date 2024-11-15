@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversion Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  
+    
+  </head>
+<body onload="getLocalStorageData()">
+  <div class="wrapper">
+    
+<!-- chart goes here-->
+
+ <!-- <button onclick="updateCount()">add count</button>-->
+<div class="container">
+  
+  
+<div class="chart-container">
+  <div class="bar" id="bar1"><p class="number-guide" id="one"></p></div>
+  <div class="bar" id="bar2"></div>
+  <div class="bar" id="bar3"></div>
+  <div class="bar" id="bar4"></div>
+  <div class="bar" id="bar5"></div>
+  <div class="bar" id="bar6"></div>
+  <div class="bar" id="bar7"></div>
+  <div class="bar" id="bar8"></div>
+  <div class="bar" id="bar9"></div>
+ </div>
+  <div class="time">
+    <p>10.00</p>
+    <p>11.00</p>
+    <p>12.00</p>
+    <p>13.00</p>
+    <p>14.00</p>
+    <p>15.00</p>
+    <p>16.00</p>
+    <p>17.00</p>
+    <p>18.00</p>
+    
+  </div>
+  
+  <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+  </div>
+
+<!-- This is middle section-->
+     <div class="dashboard">
+          <div class="road">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5CTW7hWZzwrkul9zWH2GWV3pZWg956HvcTw&s" alt="" class="mini-van" id="van"><span id="d_units">0</span>
+          
+              
+            </div>
+            <span id="target_achieved_msg">Target achieved <span id="emoji">👍</span></span>
+          <div class="buttons set-target">
+            <label>Set your target for today</label>
+            <input type="text"  min="0" max="50" id="daily_target" onkeyup="updateRangeSlider()">
+            <input type="range" min="0" max="100" value="0" id="range_selector" onmousemove="updateDailyTarget()">
+          
+            <div class="digits">
+              <p>0</p>
+              <p>10</p>
+              <p>20</p>
+              <p>30</p>
+              <p>40</p>
+              <p>50</p>
+              <p>60</p>
+              <p>70</p>
+              <p>80</p>
+              <p>90</p>
+              <p>100</p>
+            </div>
+          </div>
+
+            <div class="buttons">
+            <button onclick="updateUnits();updateDailyUnits();updateConversion();updateCount()">Add unit</button>
+            <button onclick="updateNegativeDisposition();updateConversion()">Negative Disposition</button>
+            <button onclick="resetCounters()">Reset counters</button>
+             
+            </div>
+        
+       <!-- <progress id="progress-bar"></progress> -->
+        
+            <div id="chart_div"></div>
+        
+      </div>
+         
+      
+        
+        
+          <div>
+          
+          
+          <div class="cards">
+            <span class="text-lg">MTD</span>
+            <div class="card">
+              <p>Units</p>
+            
+              <h1 id="mdUnits">0</h1>
+           
+            </div>
+            <div class="card">
+            <p>-Dispositions</p>
+            
+              <h1 id="mdNegative_disposition">0</h1>
+            </div>
+            
+            <div class="card">
+              <p>Conversion</p>
+          
+              <h1 id="mdConversion">0%</h1>
+              </div>
+          
+            
+        
+        
+        </div>
+      
+      
+</div>
+
+
+    <script src="index.js"></script>
+    
+</body>
+</html>
