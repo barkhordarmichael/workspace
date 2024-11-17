@@ -179,12 +179,13 @@ function drawChart() {
         
 
         chart.draw(data, options);
-
+        
         setInterval(function() {
           data.setValue(0, 1, daily_units);
           chart.draw(data, options);
           //document.getElementById('units').innerHTML= daily_units;
-          localStorage.setItem("month to date units", monthToDateUnits)
+          localStorage.setItem("month to date units", monthToDateUnits);
+          document.getElementById("mdUnits").innerHTML=monthToDateUnits;
         }, 1000);
         setInterval(function() {
           data.setValue(1, 1, negativeDisposition);
@@ -212,6 +213,7 @@ function drawChart() {
     
       }
       
+      
      
 
  
@@ -223,15 +225,15 @@ function drawChart() {
   if(time === 10 ){
      barOne++;
     console.log('bar one: '+barOne);
-    document.getElementById('bar1').innerHTML= "<h3>1</h3>";
     
+    document.getElementById('one').innerText= barOne;
      bar1.style.height= barOne*1+"em";
     localStorage.setItem("one", barOne)
   }
   else if(time === 11){
     barTwo++;
     console.log(barTwo) 
-   
+    document.getElementById('two').innerText= barTwo;
      bar2.style.height= barTwo*1+"em";
     localStorage.setItem("two", barTwo)
     
@@ -240,52 +242,71 @@ function drawChart() {
     barThree++;
     console.log(barThree)
      bar3.style.height= barThree*1+"em";
+     document.getElementById('three').innerText= barThree;
      localStorage.setItem("three", barThree)
   }
   else if(time === 13){
     barFour++;
     console.log(barFour)
      bar4.style.height= barFour*1+"em";
+     document.getElementById('four').innerText= barFour;
     localStorage.setItem("four", barFour)
   }
   else if(time === 14){
     barFive++;
     console.log(barFive)
      bar5.style.height= barFive*1+"em";
+     document.getElementById('five').innerText= barFive;
     localStorage.setItem("five", barFive)
   }
   else if(time === 15){
     barSix++;
     console.log(barSix)
      bar6.style.height= barSix*1+"em";
+     document.getElementById('six').innerText= barSix;
     localStorage.setItem("six", barSix)
   }
   else if(time === 16){
     barSeven++;
     console.log(barSeven)
+    document.getElementById('seven').innerText= barSeven;
     localStorage.setItem("five", barSeven)
      bar7.style.height= barSeven*1+"em";
   }
   else if(time === 17){
     barEight++;
     console.log(barEight);
+    document.getElementById('eight').innerText= barEight;
     localStorage.setItem('eight', barEight);
     bar8.style.height= barEight*1+"em";
   }
   else if(time === 18){
     barNine++;
     console.log(barNine);
+    document.getElementById('nine').innerText= barNine;
     localStorage.setItem('nine', barNine);
     bar9.style.height= barNine*1+"em";
   }
   else{
-    console.log(`it's ${min} it's outside range`)
+    console.log(`it's ${time} it's outside range`)
   }
 }
 
  //chart
  
-      
+    function resetStats(){
+      monthToDateConversion=0;
+      monthtoDateNegativeDisposition=0;
+      monthToDateUnits=0;
+
+
+    
+      localStorage.setItem("Month to date negative disposition", 0);
+      localStorage.setItem("month to date units", 0);
+      localStorage.setItem("month to date conversion", 0);
+      alert(localStorage.getItem("month to date conversion"))
+    
+    }  
       
       
       
