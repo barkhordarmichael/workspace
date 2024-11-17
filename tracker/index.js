@@ -85,9 +85,12 @@ vanEl.style.marginLeft=daily_units*5+"px"
 d_unitsEl.innerHTML=daily_units;
 //console.log(daily_units)
 if(dailytargetEl.value==daily_units){
-alert('Target achieved')
+document.getElementById('target_achieved_msg').style.display="block";
 
     }
+else if(dailytargetEl.value > daily_units){
+  document.getElementById('target_achieved_msg').style.display="none";
+}
 }
 
 // update range slider
