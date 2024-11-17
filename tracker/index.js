@@ -205,6 +205,7 @@ function drawChart() {
           chart.draw(data, options);
           
           
+          
           document.getElementById('mdConversion').innerHTML= monthToDateConversion.toFixed(1)+'%';
           
           localStorage.setItem("month to date conversion", monthToDateConversion.toFixed(1));
@@ -298,13 +299,12 @@ function drawChart() {
       monthToDateConversion=0;
       monthtoDateNegativeDisposition=0;
       monthToDateUnits=0;
-
-
+      
     
       localStorage.setItem("Month to date negative disposition", 0);
       localStorage.setItem("month to date units", 0);
       localStorage.setItem("month to date conversion", 0);
-      alert(localStorage.getItem("month to date conversion"))
+      
     
     }  
       
