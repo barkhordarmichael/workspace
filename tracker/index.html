@@ -19,15 +19,27 @@
   
   
 <div class="chart-container">
-  <div class="bar" id="bar1"><p class="number-guide" id="one"></p></div>
-  <div class="bar" id="bar2"><p class="number-guide" id="two"></p></div>
-  <div class="bar" id="bar3"><p class="number-guide" id="three"></p></div>
-  <div class="bar" id="bar4"><p class="number-guide" id="four"></p></div>
-  <div class="bar" id="bar5"><p class="number-guide" id="five"></p></div>
-  <div class="bar" id="bar6"><p class="number-guide" id="six"></p></div>
-  <div class="bar" id="bar7"><p class="number-guide" id="seven"></p></div>
-  <div class="bar" id="bar8"><p class="number-guide" id="eight"></p></div>
-  <div class="bar" id="bar9"><p class="number-guide" id="nine"></p></div>
+  <div>
+    <p>9</p>
+    <p>8</p>
+    <p>7</p>
+    <p>6</p>
+    <p>5</p>
+    <p>4</p>
+    <p>3</p>
+    <p>2</p>
+    <p>1</p>
+    <p>0</p>
+  </div>
+  <div class="bar" id="bar1"><p id="bar1-display">0</p></div>
+  <div class="bar" id="bar2"><p id="bar2-display">0</p></div>
+  <div class="bar" id="bar3"><p id="bar3-display">0</p></div>
+  <div class="bar" id="bar4"><p id="bar4-display">0</p></div>
+  <div class="bar" id="bar5"><p id="bar5-display">0</p></div>
+  <div class="bar" id="bar6"><p id="bar6-display">0</p></div>
+  <div class="bar" id="bar7"><p id="bar7-display">0</p></div>
+  <div class="bar" id="bar8"><p id="bar8-display">0</p></div>
+  <div class="bar" id="bar9"><p id="bar9-display">0</p></div>
  </div>
   <div class="time">
     <p>10.00</p>
@@ -48,28 +60,27 @@
 <!-- This is middle section-->
      <div class="dashboard">
           <div class="road">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5CTW7hWZzwrkul9zWH2GWV3pZWg956HvcTw&s" alt="" class="mini-van" id="van"><span id="d_units">0</span>
-          
+              
+              <p class="mini-van" id="van">🏎️</p><span id="d_units">0</span>
               
             </div>
             <span id="target_achieved_msg">Target achieved <span id="emoji">👍</span></span>
           <div class="buttons set-target">
             <label>Set your target for today</label>
             <input type="text"  min="0" max="50" id="daily_target" onkeyup="updateRangeSlider()">
-            <input type="range" min="0" max="100" value="0" id="range_selector" onmousemove="updateDailyTarget()">
+            <input type="range" min="0" max="40" value="0" id="range_selector" onmousemove="updateDailyTarget()">
           
             <div class="digits">
               <p>0</p>
+              <p>5</p>
               <p>10</p>
+              <p>15</p>
               <p>20</p>
+              <p>25</p>
               <p>30</p>
+              <p>35</p>
               <p>40</p>
-              <p>50</p>
-              <p>60</p>
-              <p>70</p>
-              <p>80</p>
-              <p>90</p>
-              <p>100</p>
+              
             </div>
           </div>
 
@@ -94,8 +105,9 @@
           
           <div class="cards">
             <span class="text-lg">MTD</span>
-            <button class="card text-lg" onclick="resetStats()">Reset Stats</button>
+            <button class="card text-lg" onclick="resetMonthlyStats()">Reset counters</button>
             <div class="card">
+              
               <p>Units</p>
             
               <h1 id="mdUnits">0</h1>

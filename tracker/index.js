@@ -85,12 +85,9 @@ vanEl.style.marginLeft=daily_units*5+"px"
 d_unitsEl.innerHTML=daily_units;
 //console.log(daily_units)
 if(dailytargetEl.value==daily_units){
-document.getElementById('target_achieved_msg').style.display="block";
+alert('Target achieved')
 
     }
-else if(dailytargetEl.value > daily_units){
-  document.getElementById('target_achieved_msg').style.display="none";
-}
 }
 
 // update range slider
@@ -182,13 +179,12 @@ function drawChart() {
         
 
         chart.draw(data, options);
-        
+
         setInterval(function() {
           data.setValue(0, 1, daily_units);
           chart.draw(data, options);
           //document.getElementById('units').innerHTML= daily_units;
-          localStorage.setItem("month to date units", monthToDateUnits);
-          document.getElementById("mdUnits").innerHTML=monthToDateUnits;
+          localStorage.setItem("month to date units", monthToDateUnits)
         }, 1000);
         setInterval(function() {
           data.setValue(1, 1, negativeDisposition);
@@ -207,16 +203,17 @@ function drawChart() {
           	 data.setValue(2, 1, conversion.toFixed(1));
           chart.draw(data, options);
           
-          
-          
+          if(isNaN(monthToDateConversion)){
+            document.getElementById('mdConversion').innerHTML="0%"
+          }
+          else{
           document.getElementById('mdConversion').innerHTML= monthToDateConversion.toFixed(1)+'%';
           
           localStorage.setItem("month to date conversion", monthToDateConversion.toFixed(1));
-        
+          }
         }, 2000);
-    
-      }
       
+      }
       
      
 
@@ -229,87 +226,78 @@ function drawChart() {
   if(time === 10 ){
      barOne++;
     console.log('bar one: '+barOne);
+    document.getElementById('bar1').innerHTML= "<h3>1</h3>";
     
-    document.getElementById('one').innerText= barOne;
-     bar1.style.height= barOne*1+"em";
-    localStorage.setItem("one", barOne)
+     bar1.style.height= barOne*40+"px";
+    localStorage.setItem("one", barOne);
+    document.getElementById("bar1-display").innerHTML=barOne;
   }
   else if(time === 11){
     barTwo++;
     console.log(barTwo) 
-    document.getElementById('two').innerText= barTwo;
-     bar2.style.height= barTwo*1+"em";
-    localStorage.setItem("two", barTwo)
+   
+     bar2.style.height= barTwo*40+"px";
+    localStorage.setItem("two", barTwo);
+    document.getElementById("bar2-display").innerHTML=barTwo;
     
   }
    else if(time === 12){
     barThree++;
     console.log(barThree)
-     bar3.style.height= barThree*1+"em";
-     document.getElementById('three').innerText= barThree;
-     localStorage.setItem("three", barThree)
+     bar3.style.height= barThree*40+"px";
+     localStorage.setItem("three", barThree);
+     document.getElementById("bar3-display").innerHTML=barThree;
   }
   else if(time === 13){
     barFour++;
     console.log(barFour)
-     bar4.style.height= barFour*1+"em";
-     document.getElementById('four').innerText= barFour;
+     bar4.style.height= barFour*40+"px";
     localStorage.setItem("four", barFour)
+    document.getElementById("bar4-display").innerHTML=barFour;
   }
   else if(time === 14){
     barFive++;
     console.log(barFive)
-     bar5.style.height= barFive*1+"em";
-     document.getElementById('five').innerText= barFive;
-    localStorage.setItem("five", barFive)
+     bar5.style.height= barFive*40+"px";
+    localStorage.setItem("five", barFive);
+    document.getElementById("bar5-display").innerHTML=barFive;
   }
   else if(time === 15){
     barSix++;
     console.log(barSix)
-     bar6.style.height= barSix*1+"em";
-     document.getElementById('six').innerText= barSix;
-    localStorage.setItem("six", barSix)
+     bar6.style.height= barSix*40+"px";
+    localStorage.setItem("six", barSix);
+    document.getElementById("bar6-display").innerHTML=barSix;
   }
   else if(time === 16){
     barSeven++;
     console.log(barSeven)
-    document.getElementById('seven').innerText= barSeven;
     localStorage.setItem("five", barSeven)
-     bar7.style.height= barSeven*1+"em";
+     bar7.style.height= barSeven*40+"px";
+     document.getElementById("bar7-display").innerHTML=barSeven;
   }
   else if(time === 17){
     barEight++;
     console.log(barEight);
-    document.getElementById('eight').innerText= barEight;
     localStorage.setItem('eight', barEight);
-    bar8.style.height= barEight*1+"em";
+    bar8.style.height= barEight*40+"px";
+    document.getElementById("bar8-display").innerHTML=barEight;
   }
   else if(time === 18){
     barNine++;
     console.log(barNine);
-    document.getElementById('nine').innerText= barNine;
     localStorage.setItem('nine', barNine);
-    bar9.style.height= barNine*1+"em";
+    bar9.style.height= barNine*40+"px";
+    document.getElementById("bar9-display").innerHTML=barNine;
   }
   else{
-    console.log(`it's ${time} it's outside range`)
+    console.log(`it's ${min} it's outside range`)
   }
 }
 
  //chart
  
-    function resetStats(){
-      monthToDateConversion=0;
-      monthtoDateNegativeDisposition=0;
-      monthToDateUnits=0;
       
-    
-      localStorage.setItem("Month to date negative disposition", 0);
-      localStorage.setItem("month to date units", 0);
-      localStorage.setItem("month to date conversion", 0);
-      
-    
-    }  
       
       
       
@@ -326,6 +314,16 @@ function drawChart() {
     negativeDisposition= 0;
     conversion= 0;
     rangeSelectorEl.value= 0; 
-    d_unitsEl.innerText = 0; 
+    d_unitsEl.innerText = 0;
+    document.getElementById("van").style.marginLeft=("0"); 
   
+ }
+ //Reset monthly stats
+
+ function resetMonthlyStats(){
+  monthToDateUnits=0;
+  mdUnits.innerText=monthToDateUnits;
+  monthtoDateNegativeDisposition=0;
+  monthToDateConversion=0;
+
  }
