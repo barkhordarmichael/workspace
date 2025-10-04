@@ -3,201 +3,419 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Worsksace</title>
-    <!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    
-    <script src="main.js"></script>
+    <title>Workspace Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        nav li {
+            position: relative;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .btn a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .dropdown-box {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            min-width: 300px;
+            max-width: 400px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            z-index: 1000;
+            margin-top: 0.5rem;
+            color: #333;
+        }
+
+        .dropdown-box.show {
+            display: block;
+        }
+
+        .btn_clock {
+            margin-left: auto;
+            padding: 0.6rem 1.2rem;
+            background: rgba(255,255,255,0.25);
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 40% 60%;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .full-width {
+            grid-column: 1 / 2;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+        }
+
+        .card h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        td {
+            padding: 5px;
+            vertical-align: middle;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 0.5rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .callbacks {
+            width: 100%;
+        }
+
+        .callbacks button {
+            width: 100%;
+            max-width: 200px;
+            margin-bottom: 5px;
+            background: #667eea;
+            color: white;
+            border: none;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .callbacks td {
+            padding: 5px;
+            vertical-align: middle;
+        }
+
+        .callbacks button:hover {
+            background: #5568d3;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: inherit;
+            resize: vertical;
+            margin-top: 1rem;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            background: white;
+        }
+
+        .iframe-container {
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width {
+                grid-column: 1;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn_clock {
+                margin-left: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-      
-      
-        <!--<marquee class="bg-light text-dark link-danger">Business use ... Valid TAX, MOT, Insurance</marquee>-->
-        <nav>
-          <ul>
-            <li id="flr" class="btn" onmouseover="flrPopup()" onmouseout="flrClear()">FLR Terms
-              <ul class="dropdown-box">
-                <li><p>Your upgrade will start on your renewal date or within [reward product exclusion days] from today.<br>
-                  Your upgrade will remain providing you keep your existing policy with a minimum of Roadside cover.<br>
-                  You will lose your upgrade if you change to a different policy with different membership terms or cancel the membership.</p></li>
-              </ul>
+    <nav>
+        <ul>
+            <li id="flr" class="btn">FLR Terms
+                <ul class="dropdown-box" id="flrDropdown">
+                    <li><p>Your upgrade will start on your renewal date or within [reward product exclusion days] from today.<br>
+                    Your upgrade will remain providing you keep your existing policy with a minimum of Roadside cover.<br>
+                    You will lose your upgrade if you change to a different policy with different membership terms or cancel the membership.</p></li>
+                </ul>
             </li>
-            <li id="month_ext" class="btn" onmouseover="monthExt()" onmouseleave="monthExtClear()">Extension terms
-              <ul>
-                <li id="month_ext_dropdown" class="dropdown-box">
-                  <p>If you choose to cancel your policy or downgrade within the first 12 months you will lose this benefit and not be able to re-claim or re-start the policy extension.<br>
-                    The policy extension will be added at month 13. If you pay on a rolling monthly basis, you must make 12 consecutive payments at full price, and must have active cover at month 12.
-                    </p>
-                </li>
-              </ul>
+            <li id="month_ext" class="btn">Extension terms
+                <ul class="dropdown-box" id="monthExtDropdown">
+                    <li><p>If you choose to cancel your policy or downgrade within the first 12 months you will lose this benefit and not be able to re-claim or re-start the policy extension.<br>
+                    The policy extension will be added at month 13. If you pay on a rolling monthly basis, you must make 12 consecutive payments at full price, and must have active cover at month 12.</p></li>
+                </ul>
             </li>
             <li class="btn"><a href="https://www.rac.co.uk/" target="_blank">Launch RAC</a></li>
             <li class="btn"><a href="https://www.theaa.com/breakdown-cover/uk" target="_blank">Launch AA</a></li>
-            <li class="btn"><a href="https://racfreedom.sharepoint.com/ba/SnM/SnS/Knowledge%20Base/Essential%20Telephone%20Numbers.aspx?OR=Teams-HL&CT=1628147822880" target="_blank">Usefull numbers</a></li>
+            <li class="btn"><a href="https://racfreedom.sharepoint.com/ba/SnM/SnS/Knowledge%20Base/Essential%20Telephone%20Numbers.aspx?OR=Teams-HL&CT=1628147822880" target="_blank">Useful numbers</a></li>
             <li class="btn"><a href="http://pgbge1pvp001/EcarWebpage/ECarMain.aspx" target="_blank">Ecars</a></li>
-            <li class="btn"><a href="https://rewards.rac.co.uk/rac" target="_blank">Member benfits</a></li>
-           <li class="btn_clock" id="clocky"></li>
-          </ul>
-          
-          <!--<ul class="nav justify-content-center">
-            
-          <button class="btn">
-            FLR Terms
-          </button>
-          <ul class="dropdown-box">
-            <p>Your upgrade will start on your renewal date or within [reward product exclusion days] from today.<br>
-              Your upgrade will remain providing you keep your existing policy with a minimum of Roadside cover.<br>
-              You will lose your upgrade if you change to a different policy with different membership terms or cancel the membership.</p>
-          </ul>
-        </div>
-        <div class="dropdown">
-          <button class="btn">
-            Extension terms
-          </button>
-          <ul class="dropdown-box">
-            <p>If you choose to cancel your policy or downgrade within the first 12 months you will lose this benefit and not be able to re-claim or re-start the policy extension.<br>
-          The policy extension will be added at month 13. If you pay on a rolling monthly basis, you must make 12 consecutive payments at full price, and must have active cover at month 12.
-          </p>
-          </ul>
-        </div>
-           <ul>
-              <li>
-                  <a class="btn" href="https://www.rac.co.uk/breakdown-cover/join-uk-breakdown/build-package/people-or-vehicles?version=standard-unlimited" target="_blank">Launch RAC</a>
-              </li>
-              <li>
-                  <a class="btn" href="https://www.theaa.com/breakdown-cover/uk" target="_blank">Launch AA</a>
-              </li>
-              <li>
-                  <a class="btn" href="https://racfreedom.sharepoint.com/ba/SnM/SnS/Knowledge%20Base/Essential%20Telephone%20Numbers.aspx?OR=Teams-HL&CT=1628147822880" target="_blank">Usefull numbers</a>
-              </li>
-              <li>
-                  <a class="btn" href="http://pgbge1pvp001/EcarWebpage/ECarMain.aspx" target="_blank">Ecars</a>
-              </li>
-              <li>
-                  <a class="btn" href="https://www.rac.co.uk/breakdown-cover/enjoymore" target="_blank">Member benfits</a>
-              </li>
-            </ul>
-          -->
-          
-</nav>
-        
-        
-        
+            <li class="btn"><a href="https://rewards.rac.co.uk/rac" target="_blank">Member benefits</a></li>
+            <li class="btn_clock" id="clocky"></li>
         </ul>
-        </nav>
-  <div>  
-        
-            
-              <div class="grid-container">
-                  <div>
-                      <table class="table mb-3">
-                  
-                  <tr>
-                  <td></td>
-                  <td>Premium</td>
-                  <td>Calculations</td>
-                  <td>Results</td>
-                            <td>Monthly/12</td>
-                  
-              </tr>
-              <tr>
-                  <td>Override</td>
-                  <td><input type="text" id="copyOfPremium" size="10" placeholder="Premium1"></td>
-                    <td><input type="text" id="aaf" size="10" placeholder="AAF" onfocusout="calculateOverride()"></td>
-                    
-                  <td><input type="text" id="result" placeholder="results"></td>
-                  <td style="size:15"><input type="text" id="monthly1" size="15" placeholder="results"> </td>
-              </tr>
-              <tr>
-                  <td>Divide</td>
-                  <td><input id="premium"type="text"></td>
-                  <td><input id="division" onfocusout="calculateDivision()"type="text" value="12"></td>
-                  <td><input id="output"type="text"></td>
-                  <td><input type="text" id="monthly2" size="15" placeholder="results"> </td>
-              </tr>
-              <tr>
-                  <td>Discount</td>
-                  <td><input type="text" id="premium2" size="10" placeholder="Premium"></td>
-                    <td><input type="text" id="discountPercentage" size="10" placeholder="Discount" onfocusout="calculateDiscount()"></td>
-                    <td><input type="text" id="discount" size="10"></td>
-                  <td><input type="text" id="monthly3" size="15" placeholder="results"> </td>
-              </tr>
-              <tr>
-                  <td>Extra Months</td>
-                  <td><input id="months" type="text"></td>
-                  <td><input id= "noOfMonths" onfocusout="calculateExtraMonths()"type="text" value="12"></td>
-                  <td><input id="extraMonths" onfocusout="calculateExtraMonths()"type="text"></td>
-                  <td><input type="text" id="monthly4" size="15" placeholder="results"> </td>
-              </tr>
-              <tr>
-                  <td>Web/Quote</td>
-                  <td><input id ="quote" type="text"></td>
-                  <td><input id ="web" onkeyup="calculateDiffInprice()" type="text"></td>
-                  <td><input id="price_diff" type="text"></td>
-                  <td><input type="text" id="monthly5" size="15" placeholder="results"> </td>
-              </tr>
-              
-              
-              
-                  
-                  </table>
-          
-          
-                  <div class="grid-container">
-                    <div>
-                <label style="font-size:16px">Callbacks</label>
-                      
-                <table class="callbacks">
-          
-                  <tr>
-                    <td><button class="btn" type="button" onclick="myFunction()"> Check happy with quote</button>
-                      <input type="text" id="happyWithQuote" value="Check happy with quote" style="display:none"></td>
-                       <td><button class="btn" type="button" onclick="myFunction2()"> Call to take payment</button>
-                      <input type="text" id="takePayment" value="Callback to take payment" style="display:none"></td>
-                  </tr>
-                 
-                  <tr>
-                    <td><button class="btn" type="button" onclick="myFunction3()">Review quote</button><input type="text" id="reviewQuote" value="Review quote" style="display:none"></td>
-                     <td><button class="btn type="button" onclick="myFunction4()"> Check received docs</button>
-                      <input type="text" id="receivedDocs" value="Check received docs" style="display:none"></td>
-                  </tr>
-                  
-                  <tr>
-                    <td><button class="btn" type="button" onclick="myFunction5()"> Callback arranged</button>
-                      <input type="text" id="callBack" value="Callback arranged" style="display:none"></td>
-                  </tr>
-           
+    </nav>
+
+    <div class="container">
+        <div class="grid-container">
+            <div class="card">
+                <h3>Price Calculations</h3>
+                <table>
+                    <tr>
+                        <td><strong>Type</strong></td>
+                        <td><strong>Premium</strong></td>
+                        <td><strong>Input</strong></td>
+                        <td><strong>Result</strong></td>
+                        <td><strong>Monthly</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Override</td>
+                        <td><input type="text" id="copyOfPremium" placeholder="Premium"></td>
+                        <td><input type="text" id="aaf" placeholder="AAF"></td>
+                        <td><input type="text" id="result" placeholder="Result" readonly></td>
+                        <td><input type="text" id="monthly1" placeholder="Monthly" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>Divide</td>
+                        <td><input id="premium" type="text" placeholder="Premium"></td>
+                        <td><input id="division" type="text" value="12" placeholder="Divisor"></td>
+                        <td><input id="output" type="text" placeholder="Result" readonly></td>
+                        <td><input type="text" id="monthly2" placeholder="Monthly" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>Discount</td>
+                        <td><input type="text" id="premium2" placeholder="Premium"></td>
+                        <td><input type="text" id="discountPercentage" placeholder="Discount %"></td>
+                        <td><input type="text" id="discount" readonly></td>
+                        <td><input type="text" id="monthly3" placeholder="Monthly" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>Extra Months</td>
+                        <td><input id="months" type="text" placeholder="Premium"></td>
+                        <td><input id="noOfMonths" type="text" value="12" placeholder="Months"></td>
+                        <td><input id="extraMonths" type="text" readonly></td>
+                        <td><input type="text" id="monthly4" placeholder="Monthly" readonly></td>
+                    </tr>
+                    <tr>
+                        <td>Web/Quote</td>
+                        <td><input id="quote" type="text" placeholder="Quote"></td>
+                        <td><input id="web" type="text" placeholder="Web Price"></td>
+                        <td><input id="price_diff" type="text" placeholder="Difference" readonly></td>
+                        <td><input type="text" id="monthly5" placeholder="Monthly" readonly></td>
+                    </tr>
                 </table>
-                 <textarea row="100" col="100" name="textarea"></textarea>
-                </div>
-                
-              
-                  </div>
-                </div>
-                            
-              
-                  
-              
-        
-                    <iframe  src="https://apps.powerapps.com/play/e/default-daf62abb-9a6c-4f5d-b141-a1c95a4ead9d/a/b5a8af2c-82ee-462f-8652-d8297fbd1425?tenantId=daf62abb-9a6c-4f5d-b141-a1c95a4ead9d&source=portal&screenColor=rgba%2881%2C+92%2C+107%2C+1%29&skipAppMetadata=true#%23%23%23%23%23%23">
-                    
-                    </iframe>
-                  </div>
-                            
-                  <div>
-                  <!-- Cisco screen
-                  <object type="text/html" data="https://pgbco1vfn001.ucce.rac.local:8445/desktop/container/?locale=en_US" width="800px" height="400px" style="overflow:auto;border:5px ridge blue" padding="0">
-              </object> -->
-                  
-                    <iframe id="tracker" src="./tracker/index.html"></iframe>
-                    
-        <br><br>
-                    
-                    
-                  </div>
-                          
+            </div>
+
+            <div class="card">
+                <iframe src="https://apps.powerapps.com/play/e/default-daf62abb-9a6c-4f5d-b141-a1c95a4ead9d/a/b5a8af2c-82ee-462f-8652-d8297fbd1425?tenantId=daf62abb-9a6c-4f5d-b141-a1c95a4ead9d&source=portal&screenColor=rgba%2881%2C+92%2C+107%2C+1%29&skipAppMetadata=true"></iframe>
+            </div>
+
+            <div class="card full-width">
+                <h3>Callbacks</h3>
+                <table class="callbacks">
+                    <tr>
+                        <td><button class="btn" type="button" data-callback="happyWithQuote">Check happy w/ quote</button></td>
+                        <td><button class="btn" type="button" data-callback="takePayment">Call to take payment</button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="btn" type="button" data-callback="reviewQuote">Review quote</button></td>
+                        <td><button class="btn" type="button" data-callback="receivedDocs">Check received docs</button></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button class="btn" type="button" data-callback="callBack">Callback arranged</button></td>
+                    </tr>
+                </table>
+                <textarea id="callbackNotes" placeholder="Notes ..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Clock functionality
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-GB', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('clocky').textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Dropdown functionality
+        const flrBtn = document.getElementById('flr');
+        const flrDropdown = document.getElementById('flrDropdown');
+        const monthExtBtn = document.getElementById('month_ext');
+        const monthExtDropdown = document.getElementById('monthExtDropdown');
+
+        flrBtn.addEventListener('mouseenter', () => flrDropdown.classList.add('show'));
+        flrBtn.addEventListener('mouseleave', () => flrDropdown.classList.remove('show'));
+        monthExtBtn.addEventListener('mouseenter', () => monthExtDropdown.classList.add('show'));
+        monthExtBtn.addEventListener('mouseleave', () => monthExtDropdown.classList.remove('show'));
+
+        // Calculator functions
+        function calculateOverride() {
+            const premium = parseFloat(document.getElementById('copyOfPremium').value) || 0;
+            const aaf = parseFloat(document.getElementById('aaf').value) || 0;
+            const result = premium - aaf;
+            document.getElementById('result').value = result.toFixed(2);
+            document.getElementById('monthly1').value = (result / 12).toFixed(2);
+        }
+
+        function calculateDivision() {
+            const premium = parseFloat(document.getElementById('premium').value) || 0;
+            const division = parseFloat(document.getElementById('division').value) || 1;
+            const output = premium / division;
+            document.getElementById('output').value = output.toFixed(2);
+            document.getElementById('monthly2').value = (output).toFixed(2);
+        }
+
+        function calculateDiscount() {
+            const premium = parseFloat(document.getElementById('premium2').value) || 0;
+            const discountPct = parseFloat(document.getElementById('discountPercentage').value) || 0;
+            const discounted = premium - (premium * (discountPct / 100));
+            document.getElementById('discount').value = discounted.toFixed(2);
+            document.getElementById('monthly3').value = (discounted / 12).toFixed(2);
+        }
+
+        function calculateExtraMonths() {
+            const premium = parseFloat(document.getElementById('months').value) || 0;
+            const numMonths = parseFloat(document.getElementById('noOfMonths').value) || 12;
+            const extraMonths = parseFloat(document.getElementById('extraMonths').value) || 0;
+            const totalMonths = numMonths + extraMonths;
+            const monthly = totalMonths > 0 ? premium / totalMonths : 0;
+            document.getElementById('monthly4').value = monthly.toFixed(2);
+        }
+
+        function calculateDiffInPrice() {
+            const quote = parseFloat(document.getElementById('quote').value) || 0;
+            const web = parseFloat(document.getElementById('web').value) || 0;
+            const diff = quote - web;
+            document.getElementById('price_diff').value = diff.toFixed(2);
+            document.getElementById('monthly5').value = (diff / 12).toFixed(2);
+        }
+
+        // Event listeners for calculations
+        document.getElementById('copyOfPremium').addEventListener('input', calculateOverride);
+        document.getElementById('aaf').addEventListener('input', calculateOverride);
+        document.getElementById('premium').addEventListener('input', calculateDivision);
+        document.getElementById('division').addEventListener('input', calculateDivision);
+        document.getElementById('premium2').addEventListener('input', calculateDiscount);
+        document.getElementById('discountPercentage').addEventListener('input', calculateDiscount);
+        document.getElementById('months').addEventListener('input', calculateExtraMonths);
+        document.getElementById('noOfMonths').addEventListener('input', calculateExtraMonths);
+        document.getElementById('extraMonths').addEventListener('input', calculateExtraMonths);
+        document.getElementById('quote').addEventListener('input', calculateDiffInPrice);
+        document.getElementById('web').addEventListener('input', calculateDiffInPrice);
+
+        // Callback functionality
+        const callbackMessages = {
+            happyWithQuote: 'Check happy with quote',
+            takePayment: 'Callback to take payment',
+            reviewQuote: 'Review quote',
+            receivedDocs: 'Check received docs',
+            callBack: 'Callback arranged'
+        };
+
+        document.querySelectorAll('[data-callback]').forEach(button => {
+            button.addEventListener('click', function() {
+                const callbackType = this.getAttribute('data-callback');
+                const textarea = document.getElementById('callbackNotes');
+                const timestamp = new Date().toLocaleString('en-GB');
+                const message = `[${timestamp}] ${callbackMessages[callbackType]}\n`;
+                textarea.value += message;
+            });
+        });
+    </script>
 </body>
 </html>
