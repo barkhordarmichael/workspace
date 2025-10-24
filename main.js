@@ -104,7 +104,7 @@ document.execCommand("happyWithQuote");
 console.log(copyText.value);
   
 }
-function
+
 function myFunction2() {
 /* Get the text field */
 var copyText2 = document.getElementById("takePayment");
