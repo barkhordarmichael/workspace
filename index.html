@@ -48,8 +48,8 @@ nav ul{
 .btn{
 	background-color: rgba(44, 44, 203, 0.5);
 	text-align: center;
-	width: 150px;
-	height: 35x;
+	min-width: 150px;
+	height: 35px;
 	border-radius: 5px;
 	color: #fff;
 	text-decoration: none;
@@ -64,11 +64,13 @@ nav ul{
 #clocky{
 	font-size: 2rem;
 	position: absolute;
-	color:rgb(239, 84, 123);
+	color:rgb(64, 7, 140);
 	font-weight: bold;
-	transform: scale(1.1);
-  right: 15px;
-  top: 70px;
+	padding: 0 8px;
+  right: 5px;
+  top: 14px;
+  height: 40px;
+  border-radius: 5px;
     
 	
 }
@@ -481,7 +483,7 @@ td{
             <li class="btn" id="proof-points"><a href="#">Proof points</a></li>
             <li class="btn" id="competitor-comparison"><a href="#"></a>Competitor comparison</a></li>
           
-           <li class="btn_clock" id="clocky"></li>
+           <li id="clocky"></li>
            
           </ul>
          <div>
@@ -994,8 +996,8 @@ td{
               </tr>
               <tr>
                   <td>Override</td>
-                  <td><input type="text" id="copyOfPremium" size="10" placeholder="Premium1" onfocusout="calculateOverride()"></td>
-                    <td><input type="text" id="aaf" size="10" placeholder="AAF"></td>
+                  <td><input type="text" id="copyOfPremium" size="10" placeholder="Premium1" onchange="calculateOverride()"></td>
+                    <td><input type="text" id="aaf" size="10" placeholder="AAF" onchange="calculateOverride()"></td>
                     
                   <td><input type="text" id="result" placeholder="results"></td>
                   <td style="size:15"><input type="text" id="monthly1" size="15" placeholder="results"> </td>
@@ -1046,17 +1048,19 @@ td{
                       <input type="text" id="happyWithQuote" value="Check happy with quote" style="display:none"></td>
                        <td><button class="btn" type="button" onclick="myFunction2()"> Call to take payment</button>
                       <input type="text" id="takePayment" value="Callback to take payment" style="display:none"></td>
+                      <td><button class="btn" type="button" onclick="myFunction3()">Review quote</button><input type="text" id="reviewQuote" value="Review quote" style="display:none"></td>
                   </tr>
                  
                   <tr>
-                    <td><button class="btn" type="button" onclick="myFunction3()">Review quote</button><input type="text" id="reviewQuote" value="Review quote" style="display:none"></td>
+                    
                      <td><button class="btn" type="button" onclick="myFunction4()"> Check received docs</button>
                       <input type="text" id="receivedDocs" value="Check received docs" style="display:none"></td>
+                      <td><button class="btn" type="button" onclick="myFunction5()"> Callback arranged</button>
+                      <input type="text" id="callBack" value="Callback arranged" style="display:none"></td>
                   </tr>
                   
                   <tr>
-                    <td><button class="btn" type="button" onclick="myFunction5()"> Callback arranged</button>
-                      <input type="text" id="callBack" value="Callback arranged" style="display:none"></td>
+                    
                   </tr>
            
                 </table>
@@ -1173,6 +1177,18 @@ function updateTime() {
 	const minutes = now.getMinutes().toString().padStart(2, '0');
 	const seconds = now.getSeconds().toString().padStart(2, '0');
 	const timeString = `${hours}:${minutes}:${seconds}`;
+  if(now.getHours() < 14){
+    document.getElementById('clocky').style.backgroundColor = "lightblue"
+    document.getElementById('clocky').style.color = "black"
+  } 
+  if(now.getHours() >= 14 && now.getHours() < 17){
+    document.getElementById('clocky').style.backgroundColor = "orange"
+    document.getElementById('clocky').style.color = "black"
+  }
+  else {
+    document.getElementById('clocky').style.backgroundColor = "green"
+    document.getElementById('clocky').style.color = "white"
+  }
 	document.getElementById('clocky').innerHTML = timeString
 }
 setInterval(updateTime, 1000);
