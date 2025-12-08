@@ -167,9 +167,9 @@ input[type=text] {
 }
 textarea{
 	height: 270px;
-	width: 100%;
+	width: 97%;
 	resize: none;
-	margin-top: 5px;
+	margin: 5px;
 	padding: 10px;
 	
 }
@@ -343,6 +343,7 @@ body{
   padding: 20px;
   z-index: 100;
   position: absolute;
+  
 }
 
 .proof-point-container button{
@@ -1162,14 +1163,14 @@ function calculateDiscount() {
 var a = document.getElementById("premium2").value
 var discount = document.getElementById("discountPercentage").value
 var result = (discount / 100) * a;
-document.getElementById("discount").value = a - result.toFixed(2);
+document.getElementById("discount").value = (a - result).toFixed(2);
 console.log(result)
 }
 
 function calculateDiffInprice(){
   const diff = document.getElementById('quote').value - document.getElementById('web').value 
   
-  document.getElementById('price_diff').value=diff;
+  document.getElementById('price_diff').value=diff.toFixed(2);
 }
 function updateTime() {
 	const now = new Date();
