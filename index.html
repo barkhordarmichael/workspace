@@ -36,6 +36,7 @@ nav{
 	padding: 15px;
 	width: 100%;
   margin-bottom: 10px;
+  position: relative;
 }
 nav ul{
 	display: flex;
@@ -46,31 +47,43 @@ nav ul{
 }
 
 .btn{
-	background-color: rgba(44, 44, 203, 0.5);
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 	text-align: center;
-	min-width: 150px;
-	height: 35px;
-	border-radius: 5px;
+	min-width: 140px;
+	height: 42px;
+	border-radius: 12px;
 	color: #fff;
 	text-decoration: none;
-	padding: 2px;
+	padding: 0 20px;
 	justify-content: center;
-  align-items: center;
-	
-  display: flex;
+	align-items: center;
+	display: flex;
+	font-weight: 500;
+	font-size: 14px;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+	border: none;
+	cursor: pointer;
+}
+
+.btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+	background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
 }
   
 
 #clocky{
-	font-size: 2rem;
+	font-size: 1rem;
 	position: absolute;
 	color:rgb(64, 7, 140);
 	font-weight: bold;
 	padding: 0 8px;
-  right: 0.5%;
-  top: 14px;
+  right: 30px;
+  top: 65px;
   height: 40px;
   border-radius: 5px;
+  text-align: center;
     	
 }
 
@@ -164,7 +177,6 @@ input[type=text] {
   background-color: whitesmoke;
   color: black;
   
-	
 
  
 }
@@ -275,16 +287,12 @@ li:hover{
 }
 
 #container {
-	width: 200px;
-	padding: 8px 8px 20px 8px;
-	margin: 20px auto;
-	background-color: #ABA9D7 ;
-	border-radius: 4px;
-	border-top: 2px solid #FFF;
-	border-right: 2px solid #FFF;
-	border-bottom: 2px solid #C1C1C1;
-	border-left: 2px solid #C1C1C1;
-	box-shadow: -3px 3px 7px rgba(0, 0, 0, .6), inset -100px 0px 100px rgba(255, 255, 255, .5);
+	background: linear-gradient(160deg, rgba(90, 70, 140, 0.95) 0%, rgba(70, 55, 110, 0.98) 100%);
+	backdrop-filter: blur(10px);
+	border: 2px solid #9666ef;
+	border-radius: 12px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 4px 15px rgba(102, 126, 234, 0.4);
+	font-family: helvetica, sans-serif;
 }
 
 #display {
@@ -331,9 +339,18 @@ body{
 #closer{
   border: none;
   padding: 10px 20px;
-  background: blue;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  border-radius: 5px;
+  border-radius: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#closer:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
 }
 .proof-point-container{
   min-width: 70vw;
@@ -358,9 +375,10 @@ body{
   justify-content: center;
   gap: 10px;
   padding: 10px;
-  background: rgb(241, 212, 216);
+  background: rgba(102, 126, 234, 0.08);
   border-radius: 10px;
   font-size: 10px;
+  border: 1px solid rgba(150, 102, 239, 0.3);
 }
 .proof-point-container-div-two{
   display: flex;
@@ -372,22 +390,42 @@ body{
  
 }
 .proof-point-container-div-three{
-  display: grid;
-  padding: 10px;
-  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  background: lightblue;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(102, 126, 234, 0.08);
+  border-radius: 10px;
+  font-size: 10px;
+  border: 1px solid rgba(150, 102, 239, 0.3);
 }
 .proof-point-container-div-three .proof-point-container-card{
   min-width: 50vw;
 }
 .proof-point-container-card{
-  border: 2px solid black;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 2px 5px 7px solid black;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
   max-width: 200px;
   font-size: 12px;
+  color: #fff;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.proof-point-container-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+.proof-point-container-card .red-font {
+  color: #ffb3b3;
+}
+.proof-point-container-card .dark-blue-font,
+.proof-point-container-card p {
+  color: #fff;
 }
 /*Competitor comparison*/
 
@@ -454,14 +492,144 @@ td{
 #Contact {background-color: blue;}
 #About {background-color: orange;}
 
+/*Weather widget*/
 
+.weather-app1 {
+            width: 100vw;
+            height: 70px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 20px;
+        }
+
+        .weather-content {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0 12px;
+            overflow-x: auto;
+        }
+
+        .forecast-days {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .day-card {
+            flex: 1;
+            min-width: 64px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1px;
+            padding: 4px 4px;
+            background: rgba(102, 126, 234, 0.08);
+            border-radius: 6px;
+        }
+
+        .day-name {
+            font-size: 10px;
+            font-weight: 600;
+            color: #555;
+            text-transform: uppercase;
+        }
+
+        .day-icon {
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .day-temp {
+            font-size: 12px;
+            font-weight: 700;
+            color: #667eea;
+        }
+
+        .day-temp span {
+            font-size: 10px;
+            font-weight: 500;
+            color: #888;
+        }
+
+        @media (max-width: 600px) {
+            .day-card {
+                min-width: 48px;
+            }
+            .day-name { font-size: 9px; }
+            .day-icon { font-size: 16px; }
+            .day-temp { font-size: 11px; }
+        }
+
+        /*BBC news widget*/
+        #bbc-news {
+    width: 100vw;              /* full viewport width */
+    background: #f2f2f2;
+    padding: 10px 20px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: flex-start;   /* aligns wrapped text nicely */
+  }
+
+  #bbc-news ul {
+    display: flex;
+    justify-content: space-between;  /* spread items evenly */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: disc;
+  }
+
+  #bbc-news li {
+    flex: 1;                         /* equal-width columns */
+    margin-left: 20px;
+    font-size: 14px;
+  }
+
+  #bbc-news a {
+    color: #000;
+    text-decoration: none;
+    display: block;                  /* allows wrapping */
+    line-height: 1.2;
+  }
+
+  #bbc-news a:hover {
+    text-decoration: underline;
+  }
     </style>
 </head>
 <body>
-      
+   
+      <!--weather widget-->  
+    <div class="weather-app">
+      <div class="weather-content">
+          <div class="forecast-days" id="forecast-days">
+              <div class="day-card"><span class="day-name">--</span><span class="day-icon">🌤️</span><span class="day-temp">--°</span></div>
+              <div class="day-card"><span class="day-name">--</span><span class="day-icon">🌤️</span><span class="day-temp">--°</span></div>
+              <div class="day-card"><span class="day-name">--</span><span class="day-icon">🌤️</span><span class="day-temp">--°</span></div>
+              <div class="day-card"><span class="day-name">--</span><span class="day-icon">🌤️</span><span class="day-temp">--°</span></div>
+              <div class="day-card"><span class="day-name">--</span><span class="day-icon">🌤️</span><span class="day-temp">--°</span></div>
+          </div>
+      </div>
+      <div id="bbc-news"></div>
+
+  
       
         <!--<marquee class="bg-light text-dark link-danger">Business use ... Valid TAX, MOT, Insurance</marquee>-->
         <nav>
+          
           <ul>
             <!--<li id="flr" class="btn" onmouseover="flrPopup()" onmouseout="flrClear()">FLR Terms
               <ul class="dropdown-box">
@@ -489,7 +657,7 @@ td{
             <li class="btn" id="proof-points"><a href="#">Proof points</a></li>
             <li class="btn" id="competitor-comparison"><a href="#"></a>Competitor comparison</a></li>
           
-           <li id="clocky"></li>
+           <li class="btn" id="clocky"></li>
            
           </ul>
          <div>
@@ -551,7 +719,7 @@ td{
       <p>✔ You can <span class="red-font">save up to 6p a litre </span>when you use the fuel finder in the app, plus loads more everyday savings with rewards.</p>
       <p>✔ Save time and money with <span class="red-font">our Free accident care</span> and <span class="red-font">Free legal advise lines</span></p>
       
-      <div>
+      <div style="padding: 10px; border-radius: 5px; background: rgba(102, 126, 234, 0.08); border: 2px solid #9666ef; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2); margin-top: 10px;">
 
       </div>
     </div>
@@ -1100,6 +1268,125 @@ td{
                           
 </body>
 <script>
+  /*weather widget*/
+  // Open-Meteo: free live weather API, no key required
+  const FORECAST_URL = 'https://api.open-meteo.com/v1/forecast';
+
+// WMO weather codes → emoji
+const weatherIcons = {
+    0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️', 45: '🌫️', 48: '🌫️',
+    51: '🌧️', 53: '🌧️', 55: '🌧️', 61: '🌧️', 63: '🌧️', 65: '🌧️',
+    66: '🌧️', 67: '🌧️', 71: '❄️', 73: '❄️', 75: '❄️', 77: '❄️',
+    80: '🌦️', 81: '🌦️', 82: '🌧️', 85: '❄️', 86: '❄️',
+    95: '⛈️', 96: '⛈️', 99: '⛈️'
+};
+function iconFor(code) { return weatherIcons[code] ?? '🌤️'; }
+
+const DAY_NAMES = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+function getDayName(dateStr) {
+    const d = new Date(dateStr);
+    const today = new Date();
+    if (dateStr === today.toISOString().slice(0, 10)) return 'Today';
+    return DAY_NAMES[d.getDay()];
+}
+
+function displayForecast(days) {
+    const container = document.getElementById('forecast-days');
+    container.innerHTML = days.map(d =>
+        `<div class="day-card">
+            <span class="day-name">${d.dayName}</span>
+            <span class="day-icon">${d.icon}</span>
+            <span class="day-temp">${d.max}° <span>${d.min}°</span></span>
+        </div>`
+    ).join('');
+}
+
+function showError() {
+    document.getElementById('forecast-days').innerHTML = '';
+}
+
+async function fetchWithLocation(lat, lon) {
+    // Fetch weather forecast
+    const params = new URLSearchParams({
+        latitude: lat,
+        longitude: lon,
+        daily: 'temperature_2m_max,temperature_2m_min,weathercode',
+        timezone: 'auto'
+    });
+    const res = await fetch(`${FORECAST_URL}?${params}`);
+    if (!res.ok) throw new Error('Forecast failed');
+    const data = await res.json();
+    const daily = data.daily;
+    const days = daily.time.slice(0, 5).map((date, i) => ({
+        dayName: getDayName(date),
+        icon: iconFor(daily.weathercode[i]),
+        min: Math.round(daily.temperature_2m_min[i]),
+        max: Math.round(daily.temperature_2m_max[i])
+    }));
+
+    displayForecast(days);
+}
+
+function init() {
+    if (!navigator.geolocation) {
+        showError();
+        return;
+    }
+    navigator.geolocation.getCurrentPosition(
+        (pos) => {
+            const { latitude, longitude } = pos.coords;
+            fetchWithLocation(latitude, longitude).catch(() => showError());
+        },
+        () => showError()
+    );
+}
+init();
+  /*BBC news widget*/
+  // BBC RSS feed (Top Stories)
+const RSS_URL = "https://feeds.bbci.co.uk/news/rss.xml";
+
+// Free RSS-to-JSON proxy (avoids CORS issues)
+const API = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(RSS_URL);
+
+async function loadBBCNews() {
+  try {
+    const timestamp = Date.now(); // cache buster
+    const API = "https://api.rss2json.com/v1/api.json?rss_url=" +
+      encodeURIComponent(RSS_URL + "?t=" + timestamp);
+
+    const response = await fetch(API);
+    const data = await response.json();
+
+    const container = document.getElementById("bbc-news");
+
+    if (!data.items) {
+      container.innerHTML = "Unable to load news.";
+      return;
+    }
+
+    const items = data.items.slice(0, 5);
+
+    container.innerHTML = `
+      <ul>
+        ${items
+          .map(
+            item => `<li><a href="${item.link}" target="_blank">${item.title}</a></li>`
+          )
+          .join("")}
+      </ul>
+    `;
+  } catch (err) {
+    console.error(err);
+    document.getElementById("bbc-news").innerHTML = "Error loading feed.";
+  }
+}
+
+// Load immediately
+loadBBCNews();
+
+// Refresh every 10 minutes (600,000 ms)
+setInterval(loadBBCNews, 600000);
     /* Calculator function*/
     
 function appendDigit(digit) {
