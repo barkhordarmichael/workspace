@@ -1,18 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workspace</title>
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    
-    <script src="main.js"></script> -->
     <style>
         *{
 	padding: 0;
@@ -186,7 +177,23 @@ textarea{
 	resize: none;
 	margin: 5px;
 	padding: 10px;
-	
+	transition: all 240ms ease-in-out;
+	box-sizing: border-box;
+	background-color: #fff;
+}
+
+/* Expanded textarea styles when focused/clicked */
+.expanded-textarea {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 80% !important;
+  height: 60vh !important;
+  z-index: 9999 !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4) !important;
+  border-radius: 8px !important;
+  resize: both !important;
 }
 
 input, button{
@@ -250,10 +257,6 @@ li:hover{
   background: lightseagreen;
   color: white;
 }
-
-
-
-
 
 
 #clock{
@@ -457,10 +460,7 @@ td{
   width: auto;
   margin-left: 10px;
 }
-/*tr:nth-child(even) {
-  background-color: #dddddd;
-}
-  */
+
 /* Style tab links */
 .tablink {
   background-color: #333;
@@ -493,6 +493,7 @@ td{
 #About {background-color: orange;}
 
 /*Weather widget*/
+
 
 .weather-app1 {
             width: 100vw;
@@ -604,9 +605,10 @@ td{
     display: block;                  /* allows wrapping */
     line-height: 1.2;
   }
-
+  
   #bbc-news a:hover {
     text-decoration: underline;
+    background: #f2f2f2;
   }
     </style>
 </head>
@@ -627,18 +629,9 @@ td{
 
   
       
-        <!--<marquee class="bg-light text-dark link-danger">Business use ... Valid TAX, MOT, Insurance</marquee>-->
         <nav>
           
           <ul>
-            <!--<li id="flr" class="btn" onmouseover="flrPopup()" onmouseout="flrClear()">FLR Terms
-              <ul class="dropdown-box">
-                <li><p>Your upgrade will start on your renewal date or within [reward product exclusion days] from today.<br>
-                  Your upgrade will remain providing you keep your existing policy with a minimum of Roadside cover.<br>
-                  You will lose your upgrade if you change to a different policy with different membership terms or cancel the membership.</p></li>
-              </ul>
-            </li>
-        -->
             <li id="month_ext" class="btn" onmouseover="monthExt()" onmouseleave="monthExtClear()">Extension terms<ul>
                 <li id="month_ext_dropdown" class="dropdown-box">
                   <p>If you choose to cancel your policy or downgrade within the first 12 months you will lose this benefit and not be able to re-claim or re-start the policy extension.<br>
@@ -726,427 +719,7 @@ td{
   
          </div>
 </div>
- <!--        
-<div class="competitor-comparison">
-    <button class="tablink" onclick="openPage('AA', this, 'orange')" id="defaultOpen">AA</button>
-<button class="tablink" onclick="openPage('Greenflag', this, 'green')" >Greenflag</button>
-<button class="tablink" onclick="openPage('rescue_my_car', this, 'blue')">Rescue Mycar</button>
-<button class="tablink" onclick="openPage('national_breakdown', this, 'orange')">National breakdown</button>
-<button class="tablink" onclick="openPage('emergency_assist', this, 'blue')">Emergency Assist</button>
-<button class="tablink" onclick="openPage('motoring_assitance', this, 'orange')">Motoring Assistance</button>
-</div>
 
-<div id="AA" class="tabcontent">
-  <h3>AA vs RAC</h3>
-  <table>
-  <tr>
-  <td>AA</td>
-  <td></td>
-  <td>RAC</td>
-  <td></td>
-  </tr>
-  <tr>
-  <td>Multicar</td>
-  <td>❌</td>
-  <td>Multicar</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Onward travel 3 claims</td>
-  <td>❌</td>
-  <td>Onward travel 5 claims</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Free legal help line</td>
-  <td>❌</td>
-  <td>Free legal help line</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Beakdown extras</td>
-  <td>❌</td>
-  <td>Beakdown extras</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Extra months</td>
-  <td>❌</td>
-  <td>Extra months</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Free upgrade</td>
-  <td>❌</td>
-  <td>Free upgrade</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>20 Mile taxi journey</td>
-  <td>❌</td>
-  <td>20 Mile taxi journey</td>
-  <td>✔️</td>
-  
-  </tr>
-    
-  </table>
-</div>
-
-<div id="Greenflag" class="tabcontent">
-  <h3>Greenflag vs RAC</h3>
-  <table>
-  <tr>
-  <td>Greenflag</td>
-  <td></td>
-  <td>RAC</td>
-  <td></td>
-  </tr>
-  <tr>
-  <td>Multicar</td>
-  <td>❌</td>
-  <td>Multicar</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Onward travel- Must be over 25 miles from home</td>
-  <td>❌</td>
-  <td>Onward travel 5 claims - £500 for group</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Free legal help line</td>
-  <td>❌</td>
-  <td>Free legal help line</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Vehicle under 16 years only covered</td>
-  <td>❌</td>
-  <td>Vehicle under 16 years only covered</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Extra months</td>
-  <td>❌</td>
-  <td>Extra months</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Free upgrade</td>
-  <td>❌</td>
-  <td>Free upgrade</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>20 Mile taxi journey</td>
-  <td>❌</td>
-  <td>20 Mile taxi journey</td>
-  <td>✔️</td>
-  
-  </tr>
-    
-  </table>
-</div>
-
-<div id="rescue_my_car" class="tabcontent">
-  <h3>Rescue mycar</h3>
-  <table>
-  <tr>
-  <td>Rescue mycar</td>
-  <td></td>
-  <td>RAC</td>
-  <td></td>
-  </tr>
-  <tr>
-  <td>Multicar</td>
-  <td>❌</td>
-  <td>Multicar</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Onward travel 3 claims</td>
-  <td>❌</td>
-  <td>Onward travel 5 claims</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>1 Hour labour only</td>
-  <td>❌</td>
-  <td>No limit</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Recovery to home or nearest destination only</td>
-  <td>❌</td>
-  <td>Any UK destination</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Does not offer onward travel</td>
-  <td>❌</td>
-  <td>£500 onward travel for all passengers</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Free upgrade</td>
-  <td>❌</td>
-  <td>Free upgrade</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>20 Mile taxi journey</td>
-  <td>❌</td>
-  <td>20 Mile taxi journey</td>
-  <td>✔️</td>
-  
-  </tr>
-    
-  </table>
-</div>
-
-<div id="national_breakdown" class="tabcontent">
-  <h3>National Breakdown</h3>
-  <table>
-  <tr>
-  <td>National Breakdown</td>
-  <td></td>
-  <td>RAC</td>
-  <td></td>
-  </tr>
-  <tr>
-  <td>No Money refunded if removing vehicle/person</td>
-  <td>❌</td>
-  <td>Pro-rata refund</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>25% pro-rata charge for vehicle change</td>
-  <td>❌</td>
-  <td>No charges</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Must more than 1 mile from home for recovery</td>
-  <td>❌</td>
-  <td>1/4 mile from home</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>To claim onward travel they must be more than 25 miles away from home</td>
-  <td>❌</td>
-  <td>No limitation</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Can not be used for business use</td>
-  <td>❌</td>
-  <td>Optional add-on is available</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Free upgrade</td>
-  <td>❌</td>
-  <td>Free upgrade</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>20 Mile taxi journey</td>
-  <td>❌</td>
-  <td>20 Mile taxi journey</td>
-  <td>✔️</td>
-  
-  </tr>
-    
-  </table>
-</div>
-
-<div id="emergency_assist" class="tabcontent">
-  <h3>Emergency Assist</h3>
-  <table>
-  <tr>
-  <td>Emergency Assist</td>
-  <td></td>
-  <td>RAC</td>
-  <td></td>
-  </tr>
-  <tr>
-  <td>Multicar</td>
-  <td>❌</td>
-  <td>Multicar</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Rocovery starts 1 mile from home address</td>
-  <td>❌</td>
-  <td>1/4 mile</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Labour charges after 1 hour</td>
-  <td>❌</td>
-  <td>No labour charges</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Beakdown extras</td>
-  <td>❌</td>
-  <td>Beakdown extras</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Onward travel max claim £280</td>
-  <td>❌</td>
-  <td>Onward travel max claim £500</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Free upgrade</td>
-  <td>❌</td>
-  <td>Free upgrade</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>20 Mile taxi journey</td>
-  <td>❌</td>
-  <td>20 Mile taxi journey</td>
-  <td>✔️</td>
-  
-  </tr>
-    
-  </table>
-</div>
-
-<div id="motoring_assitance" class="tabcontent">
-  <h3>Motoring Assitance</h3>
-  <table>
-  <tr>
-  <td>Motoring Assistance</td>
-  <td></td>
-  <td>RAC</td>
-  <td></td>
-  </tr>
-  <tr>
-  <td>Only vehicle based cover</td>
-  <td>❌</td>
-  <td>Multicar/Family</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Length restrictions 5.5m, 3 ton</td>
-  <td>❌</td>
-  <td>Length restriction 6.4m, 3.5 ton</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Onward travel £100 for lead member and £50 for additional memmbers</td>
-  <td>❌</td>
-  <td>£150 per person or £500 for group</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Beakdown extras</td>
-  <td>❌</td>
-  <td>Beakdown extras</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Extra months</td>
-  <td>❌</td>
-  <td>Extra months</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>Free upgrade</td>
-  <td>❌</td>
-  <td>Free upgrade</td>
-  <td>✔️</td>
-  
-  </tr>
-    <tr>
-  <td>20 Mile taxi journey</td>
-  <td>❌</td>
-  <td>20 Mile taxi journey</td>
-  <td>✔️</td>
-  
-  </tr>
-    
-  </table>
-</div>-->
-          <!--<ul class="nav justify-content-center">
-            
-          <button class="btn">
-            FLR Terms
-          </button>
-          <ul class="dropdown-box">
-            <p>Your upgrade will start on your renewal date or within [reward product exclusion days] from today.<br>
-              Your upgrade will remain providing you keep your existing policy with a minimum of Roadside cover.<br>
-              You will lose your upgrade if you change to a different policy with different membership terms or cancel the membership.</p>
-          </ul>
-        </div>
-        <div class="dropdown">
-          <button class="btn">
-            Extension terms
-          </button>
-          <ul class="dropdown-box">
-            <p>If you choose to cancel your policy or downgrade within the first 12 months you will lose this benefit and not be able to re-claim or re-start the policy extension.<br>
-          The policy extension will be added at month 13. If you pay on a rolling monthly basis, you must make 12 consecutive payments at full price, and must have active cover at month 12.
-          </p>
-          </ul>
-        </div>
-           <ul>
-              <li>
-                  <a class="btn" href="https://www.rac.co.uk/breakdown-cover/join-uk-breakdown/build-package/people-or-vehicles?version=standard-unlimited" target="_blank">Launch RAC</a>
-              </li>
-              <li>
-                  <a class="btn" href="https://www.theaa.com/breakdown-cover/uk" target="_blank">Launch AA</a>
-              </li>
-              <li>
-                  <a class="btn" href="https://racfreedom.sharepoint.com/ba/SnM/SnS/Knowledge%20Base/Essential%20Telephone%20Numbers.aspx?OR=Teams-HL&CT=1628147822880" target="_blank">Usefull numbers</a>
-              </li>
-              <li>
-                  <a class="btn" href="http://pgbge1pvp001/EcarWebpage/ECarMain.aspx" target="_blank">Ecars</a>
-              </li>
-              <li>
-                  <a class="btn" href="https://www.rac.co.uk/breakdown-cover/enjoymore" target="_blank">Member benfits</a>
-              </li>
-            </ul>
-          -->
-          
 </nav>
         
         
@@ -1238,7 +811,10 @@ td{
                   </tr>
            
                 </table>
-                 <textarea row="100" col="100" name="textarea"></textarea>
+
+                <!-- FIX: Removed onclick="this.classList.add('expanded-textarea')" from textarea -->
+                <textarea id="callbacksNotes" class="expandable" name="callbacksNotes" rows="8" placeholder="Enter notes..." aria-label="Callbacks notes"></textarea>
+                   
                 </div>
                 
               
@@ -1255,24 +831,14 @@ td{
                   </div>
                             
                   <div>
-                  <!-- Cisco screen
-                  <object type="text/html" data="../tracker/index.html" width="800px" height="400px" style="overflow:auto;border:5px ridge blue" padding="0">
-              </object> -->
-                    <!--
-                    <iframe src="./tracker/index.html" width="800px" height="400px"></iframe>
-                    -->
-        <br><br>
-                    
-                    
+                    <br><br>
                   </div>
                           
 </body>
 <script>
   /*weather widget*/
-  // Open-Meteo: free live weather API, no key required
   const FORECAST_URL = 'https://api.open-meteo.com/v1/forecast';
 
-// WMO weather codes → emoji
 const weatherIcons = {
     0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️', 45: '🌫️', 48: '🌫️',
     51: '🌧️', 53: '🌧️', 55: '🌧️', 61: '🌧️', 63: '🌧️', 65: '🌧️',
@@ -1307,7 +873,6 @@ function showError() {
 }
 
 async function fetchWithLocation(lat, lon) {
-    // Fetch weather forecast
     const params = new URLSearchParams({
         latitude: lat,
         longitude: lon,
@@ -1342,16 +907,13 @@ function init() {
     );
 }
 init();
-  /*BBC news widget*/
-  // BBC RSS feed (Top Stories)
-const RSS_URL = "https://feeds.bbci.co.uk/news/rss.xml";
 
-// Free RSS-to-JSON proxy (avoids CORS issues)
-const API = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(RSS_URL);
+  /*BBC news widget*/
+const RSS_URL = "https://feeds.bbci.co.uk/news/rss.xml";
 
 async function loadBBCNews() {
   try {
-    const timestamp = Date.now(); // cache buster
+    const timestamp = Date.now();
     const API = "https://api.rss2json.com/v1/api.json?rss_url=" +
       encodeURIComponent(RSS_URL + "?t=" + timestamp);
 
@@ -1382,11 +944,9 @@ async function loadBBCNews() {
   }
 }
 
-// Load immediately
 loadBBCNews();
-
-// Refresh every 10 minutes (600,000 ms)
 setInterval(loadBBCNews, 600000);
+
     /* Calculator function*/
     
 function appendDigit(digit) {
@@ -1409,61 +969,53 @@ function appendDigit(digit) {
   function clearDisplay() {
     document.getElementById("display").value = "";
   }
-      function calculateOverride() {
-let a = document.getElementById("copyOfPremium").value
-document.getElementById("premium").value = a
-document.getElementById("premium2").value = a
-document.getElementById("months").value = a
-document.getElementById('quote').value = a
 
-const z = 1.12
-var aff = document.getElementById("aaf").value
-var overRideValue = a - aff
-document.getElementById("result").value = (overRideValue / z).toFixed(2)
-  document.getElementById("monthly1").value= (a/12).toFixed(2);
-  document.getElementById("monthly2").value= (a/12).toFixed(2);
-  document.getElementById("monthly3").value= (a/12).toFixed(2);
-  document.getElementById("monthly4").value= (a/12).toFixed(2);
-  document.getElementById("monthly5").value= (a/12).toFixed(2);
-  document.getElementById("price_diff").value = diff;
-  
-  
-  
+  function calculateOverride() {
+    let a = document.getElementById("copyOfPremium").value;
+    document.getElementById("premium").value = a;
+    document.getElementById("premium2").value = a;
+    document.getElementById("months").value = a;
+    document.getElementById('quote').value = a;
+
+    const z = 1.12;
+    var aff = document.getElementById("aaf").value;
+    var overRideValue = a - aff;
+    document.getElementById("result").value = (overRideValue / z).toFixed(2);
+    document.getElementById("monthly1").value = (a/12).toFixed(2);
+    document.getElementById("monthly2").value = (a/12).toFixed(2);
+    document.getElementById("monthly3").value = (a/12).toFixed(2);
+    document.getElementById("monthly4").value = (a/12).toFixed(2);
+    document.getElementById("monthly5").value = (a/12).toFixed(2);
 }
 
 function calculateExtraMonths(){
-let nOfMonths = document.getElementById("noOfMonths").value
-let premium = document.getElementById("months").value
-let result = premium/nOfMonths
-let valueOfMonths = (nOfMonths-12)*result
-document.getElementById("extraMonths").value= valueOfMonths.toFixed(2)
-document.getElementById("monthly4").value = premium-valueOfMonths.toFixed(2)
-
-
+  let nOfMonths = document.getElementById("noOfMonths").value;
+  let premium = document.getElementById("months").value;
+  let result = premium/nOfMonths;
+  let valueOfMonths = (nOfMonths-12)*result;
+  document.getElementById("extraMonths").value = valueOfMonths.toFixed(2);
+  document.getElementById("monthly4").value = premium-valueOfMonths.toFixed(2);
 }
-//console.log(overRideValue)
-//displayClock()
-function calculateDivision(){
-let premium = document.getElementById("premium").value
-let division = document.getElementById("division").value
-let result = (premium/division)
-document.getElementById("output").value=result.toFixed(2)
 
+function calculateDivision(){
+  let premium = document.getElementById("premium").value;
+  let division = document.getElementById("division").value;
+  let result = (premium/division);
+  document.getElementById("output").value = result.toFixed(2);
 }
 
 function calculateDiscount() {
-var a = document.getElementById("premium2").value
-var discount = document.getElementById("discountPercentage").value
-var result = (discount / 100) * a;
-document.getElementById("discount").value = (a - result).toFixed(2);
-console.log(result)
+  var a = document.getElementById("premium2").value;
+  var discount = document.getElementById("discountPercentage").value;
+  var result = (discount / 100) * a;
+  document.getElementById("discount").value = (a - result).toFixed(2);
 }
 
 function calculateDiffInprice(){
-  const diff = document.getElementById('quote').value - document.getElementById('web').value 
-  
-  document.getElementById('price_diff').value=diff.toFixed(2);
+  const diff = document.getElementById('quote').value - document.getElementById('web').value;
+  document.getElementById('price_diff').value = diff.toFixed(2);
 }
+
 function updateTime() {
 	const now = new Date();
 	const hours = now.getHours().toString().padStart(2, '0');
@@ -1471,316 +1023,167 @@ function updateTime() {
 	const seconds = now.getSeconds().toString().padStart(2, '0');
 	const timeString = `${hours}:${minutes}:${seconds}`;
   if(now.getHours() < 14){
-    document.getElementById('clocky').style.backgroundColor = "lightblue"
-    document.getElementById('clocky').style.color = "black"
+    document.getElementById('clocky').style.backgroundColor = "lightblue";
+    document.getElementById('clocky').style.color = "black";
   } 
   if(now.getHours() >= 14 && now.getHours() < 17){
-    document.getElementById('clocky').style.backgroundColor = "orange"
-    document.getElementById('clocky').style.color = "black"
+    document.getElementById('clocky').style.backgroundColor = "orange";
+    document.getElementById('clocky').style.color = "black";
   }
   else {
-    document.getElementById('clocky').style.backgroundColor = "green"
-    document.getElementById('clocky').style.color = "white"
+    document.getElementById('clocky').style.backgroundColor = "green";
+    document.getElementById('clocky').style.color = "white";
   }
-	document.getElementById('clocky').innerHTML = timeString
+	document.getElementById('clocky').innerHTML = timeString;
 }
 setInterval(updateTime, 1000);
-const d = new Date()
-const date = d.getDate();
-
-const today = d.toLocaleDateString();
 
 function myFunction() {
-/* Get the text field */
-var copyText = document.getElementById("happyWithQuote")
-
-/* Select the text field */
-copyText.select();
-copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
-/* Copy the text inside the text field */
-  
-navigator.clipboard.writeText(copyText.value+ " £"+document.getElementById("copyOfPremium").value);
-document.execCommand("happyWithQuote");
-console.log(copyText.value);
-  
+  var copyText = document.getElementById("happyWithQuote");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value + " £" + document.getElementById("copyOfPremium").value);
 }
 
 function myFunction2() {
-/* Get the text field */
-var copyText2 = document.getElementById("takePayment");
-
-/* Select the text field */
-copyText2.select();
-copyText2.setSelectionRange(0, 99999); /* For mobile devices */
-
-/* Copy the text inside the text field */
-navigator.clipboard.writeText(copyText2.value);
-console.log(copyText2.value)
-/* Alert the copied text */
-//alert("Copied the text: " + copyText.value);
+  var copyText2 = document.getElementById("takePayment");
+  copyText2.select();
+  copyText2.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText2.value);
 }
 
 function myFunction3() {
-/* Get the text field */
-var copyText = document.getElementById("reviewQuote");
-
-/* Select the text field */
-copyText.select();
-copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
-/* Copy the text inside the text field */
-navigator.clipboard.writeText(copyText.value);
-console.log(copyText.value)
+  var copyText = document.getElementById("reviewQuote");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
 }
+
 function myFunction4() {
-/* Get the text field */
-var copyText = document.getElementById("receivedDocs");
-
-/* Select the text field */
-copyText.select();
-copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
-/* Copy the text inside the text field */
-navigator.clipboard.writeText(copyText.value);
-console.log(copyText.value)
+  var copyText = document.getElementById("receivedDocs");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
 }
+
 function myFunction5() {
-/* Get the text field */
-var copyText = document.getElementById("callBack");
-
-/* Select the text field */
-copyText.select();
-copyText.setSelectionRange(0, 99999); /* For mobile devices */
-
-/* Copy the text inside the text field */
-navigator.clipboard.writeText(copyText.value);
-console.log(copyText.value)
+  var copyText = document.getElementById("callBack");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
 }
 
 /*Proof points script*/
-
 const proofPoints = document.getElementById('proof-points');
-proofPoints.addEventListener('click',function(){
+proofPoints.addEventListener('click', function(){
   const container = document.getElementById('container');
   if (container.style.display === "none") {
-    container.style.display = "block"
-    container.style.zIndex = "10"
+    container.style.display = "block";
+    container.style.zIndex = "10";
   } else {
-    container.style.display = "none"
+    container.style.display = "none";
   }
-})
+});
+
 const container = document.getElementById('container');
-const closer = document.getElementById('closer')
+const closer = document.getElementById('closer');
 
-
-closer.addEventListener('click',function(){
-  console.log('clicked')
-  container.style.display = "none"
-})
+closer.addEventListener('click', function(){
+  container.style.display = "none";
+});
 
 /*Competitor comparison*/
-
-
 function openPage(pageName, elmnt, color) {
-  // Hide all elements with class="tabcontent" by default */
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
-
-  // Remove the background color of all tablinks/buttons
   tablinks = document.getElementsByClassName("tablink");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].style.backgroundColor = "";
   }
-
-  // Show the specific tab content
   document.getElementById(pageName).style.display = "block";
-
-  // Add the specific color to the button used to open the tab content
   elmnt.style.backgroundColor = color;
 }
 
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click();
-
-
-
-
-
-
-/*
-Date.prototype.toDateInputValue = (function() {
-var local = new Date(this);
-local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-return local.toJSON().slice(0, 10);
-});
-document.getElementById('date-input').value = new Date().toDateInputValue();
-
-function calculateDays() {
-var day, month, year;
-
-$('#submit').on('click', function() {
-  var date = $('#date-input').val().split("-");
-   console.log(date, $('#date-input').val())
-  day = date[0];
-  month = date[1];
-  year = date[2];
-  //alert(day + month + year);
-  result = (day + month + year)
-  console.log(result)
-
-
-  var day2, month2, year2;
-
-
-  var date2 = $('#date2-input').val().split("-");
-  console.log(date2, $('#date2-input').val())
-  day2 = date2[0];
-  month2 = date2[1];
-  year2 = date2[2];
-
-  console.log(day2 + month2 + year2);
-  var result2 = (day2 + month2 + year2)
-  var days = result2 - result
-  document.getElementById("days").font = "red"
-  document.getElementById("days").value = days
-
-})
-}
-*/
-
-let saveRate
-let runningSave
-let runningCancel
-//let save 
-//let cancel 
-
-function calculateSaveRate() {
-//var saveRate = document.getElementById("save")
-//var saveRate = document.getElementById("rate")
-
-let save = document.getElementById("save").innerHTML
-document.getElementById("save").value = save+1
-  console.log(save)
-let cancel = document.getElementById("cancel").value
-document.getElementById("cancel").value = cancel
-let rate = document.getElementById("rate").value
-
-
-result = parseInt(save - cancel)
-if (save == cancel) {
-  gauge.setAttribute("width",100)
-  //document.getElementById("text").innerHTML=50+" %"
-} else {
-  var saveRate = (result / save) * (100)
-  saveRate = saveRate.toFixed(1)
-  console.log(result)
-  //document.getElementById("rate").value=saveRate
-  document.getElementById("dmcBar").value = result * 10
-  //document.setAttribute("width",result*40)
-  document.getElementById("rate").innerHTML = saveRate + "%"
-  //document.getElementById("text").innerHTML=saveRate+" %"
-  //document.getElementById("text")
-  //text.setAttribute("x",result*25)
-}
-
-function getResult() {
-  var a = document.getElementById("myLogins")
-  var result = a.options[a.selectedIndex].value
-  document.getElementById("userName").innerText = result
-
-}
-}
-var clickcount = 0
-var clickcount2 = 0
-var clickcount3 = 0
-
-//setInterval(function(){ upDateDmc(); }, 2000);
-//setInterval(function(){ cancelCounter(); }, 4000);
-//setInterval(function(){ prodCounter(); }, 3000);
-function saveCounter() {
-clickcount = clickcount+1;
-document.getElementById("gcorners1").innerHTML = parseInt(clickcount)
-
-var z = (clickcount - clickcount2)
-
-var result = (clickcount / z) * 100
-var dmc = parseFloat(result.toFixed(1))
-  console.log(dmc)
-//document.getElementById("dmcBox").innerHTML=dmc+"%"
-//var size = document.getElementById("blueBox")
-//size.setAttribute("width", clickcount)
-
-}
-
-function callCounter() {
-clickcount3 = Number(clickcount3) + 1
-document.getElementById("callCounter").innerHTML = clickcount3
-}
-
-function cancelCounter() {
-clickcount2 = Number(clickcount2) + 1;
-document.getElementById("rcorners1").innerHTML = clickcount2
-var size = document.getElementById("redBox")
-//size.setAttribute("width", clickcount2)
-
-var z = (clickcount - clickcount2)
-var result = (clickcount / z) * 100
-var dmc = parseFloat(result.toFixed(2))
-
-
-}
-
-function upDateDmc() {
-
-var save = document.getElementById("gcorners1").innerHTML
-var cancel = document.getElementById("rcorners1").innerHTML
-var result = parseFloat(save - cancel)
-
-if (save == cancel) {
-  document.getElementById("dmcBox").innerHTML = 50 + "%"
-} else
-  var dmc = (result / save * 100)
-document.getElementById("dmcBox").innerHTML = dmc.toFixed(1) + "%"
-//var saveRate= parseFloat(save/result)*100
-
-//console.log("Save rate 2 :"+saveRate)
-}
-
-function addSales() {
-
-console.log(sales.calculateMonthly)
-}
-
-function accSales() {
-var runningBalance = sales++
-console.log(runningBalance)
-var accrual = parseFloat(sales) + parseFloat(sales)
-//var sales = document.getElementById("premium").value
-//let accrual= document.getElementById("moneyPot").value
-//document.getElementById("moneyPot").innerHTML= sales
-//accrual = document.getElementById("moneyPot").value
-document.getElementById("moneyPot").innerHTML = accrual
-
-}
-
-function flrPopup(){
-  document.querySelector('.dropdown-box').style.display="block";
- 
-}
-function flrClear(){
-  document.querySelector('.dropdown-box').style.display="none";
-}
 function monthExt(){
-  document.querySelector('#month_ext_dropdown').style.display="block";
+  document.querySelector('#month_ext_dropdown').style.display = "block";
 }
 function monthExtClear(){
-  document.querySelector('#month_ext_dropdown').style.display="none";;
+  document.querySelector('#month_ext_dropdown').style.display = "none";
 }
 
+/* =====================================================
+   TEXTAREA EXPAND / COLLAPSE FIX
+   - Removed onclick from the HTML element
+   - Added stopPropagation() to overlay click so it
+     doesn't bubble up to the document listener
+   - Simplified document click handler to cleanly
+     collapse when clicking outside the textarea
+   ===================================================== */
+(function(){
+  const ta = document.getElementById('callbacksNotes');
+  if(!ta) return;
+
+  // Create dimmed overlay behind the expanded textarea
+  const overlay = document.createElement('div');
+  overlay.id = 'textarea-overlay';
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    display: none;
+    cursor: pointer;
+  `;
+  document.body.appendChild(overlay);
+
+  function expand() {
+    ta.classList.add('expanded-textarea');
+    overlay.style.display = 'block';
+    ta.focus();
+  }
+
+  function collapse() {
+    ta.classList.remove('expanded-textarea');
+    // Clear all inline styles set during expand
+    ta.style.cssText = '';
+    overlay.style.display = 'none';
+  }
+
+  // Expand on focus or click
+  ta.addEventListener('focus', expand);
+
+  // Prevent clicks inside the textarea from bubbling to the document listener
+  ta.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (!ta.classList.contains('expanded-textarea')) {
+      expand();
+    }
+  });
+
+  // Clicking the overlay collapses - stopPropagation prevents bubbling to document
+  overlay.addEventListener('click', function(e) {
+    e.stopPropagation();
+    collapse();
+  });
+
+  // Only collapse if click is outside textarea AND outside overlay
+  document.addEventListener('click', function(e) {
+    if (ta.classList.contains('expanded-textarea') && !ta.contains(e.target) && e.target !== overlay) {
+      collapse();
+    }
+  });
+
+  // Escape key also collapses
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && ta.classList.contains('expanded-textarea')) {
+      collapse();
+    }
+  });
+})();
 
 </script>
 </html>
