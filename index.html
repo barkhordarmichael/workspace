@@ -812,8 +812,8 @@ td{
            
                 </table>
 
-                <!-- FIX: Removed onclick="this.classList.add('expanded-textarea')" from textarea -->
-                <textarea id="callbacksNotes" class="expandable" name="callbacksNotes" rows="8" placeholder="Enter notes..." aria-label="Callbacks notes"></textarea>
+                <button class="btn" id="open-notes-modal" type="button" style="margin: 8px 5px; width: 97%;">📝 Open Notes</button>
+                <textarea id="callbacksNotes" name="callbacksNotes" rows="8" placeholder="Enter notes..." aria-label="Callbacks notes"></textarea>
                    
                 </div>
                 
@@ -1115,73 +1115,139 @@ function monthExtClear(){
 }
 
 /* =====================================================
-   TEXTAREA EXPAND / COLLAPSE FIX
-   - Removed onclick from the HTML element
-   - Added stopPropagation() to overlay click so it
-     doesn't bubble up to the document listener
-   - Simplified document click handler to cleanly
-     collapse when clicking outside the textarea
+   NOTES MODAL
+   - "Open Notes" button opens a modal with a larger textarea
+   - Original textarea remains visible on the page
+   - Content stays in sync between both
    ===================================================== */
 (function(){
-  const ta = document.getElementById('callbacksNotes');
-  if(!ta) return;
+  const openBtn = document.getElementById('open-notes-modal');
+  const originalTa = document.getElementById('callbacksNotes');
+  if (!openBtn || !originalTa) return;
 
-  // Create dimmed overlay behind the expanded textarea
-  const overlay = document.createElement('div');
-  overlay.id = 'textarea-overlay';
-  overlay.style.cssText = `
+  // Build modal backdrop
+  const backdrop = document.createElement('div');
+  backdrop.style.cssText = `
+    display: none;
     position: fixed;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0,0,0,0.55);
     z-index: 9998;
-    display: none;
-    cursor: pointer;
+    align-items: center;
+    justify-content: center;
   `;
-  document.body.appendChild(overlay);
 
-  function expand() {
-    ta.classList.add('expanded-textarea');
-    overlay.style.display = 'block';
-    ta.focus();
+  // Build modal panel
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    width: 60%;
+    max-width: 800px;
+    min-width: 320px;
+    padding: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+  `;
+
+  // Modal header
+  const header = document.createElement('div');
+  header.style.cssText = `display:flex; justify-content:space-between; align-items:center;`;
+  const title = document.createElement('span');
+  title.textContent = '📝 Notes';
+  title.style.cssText = `font-size:16px; font-weight:700; color:#764ba2;`;
+
+  // Close button
+  const closeBtn = document.createElement('button');
+  closeBtn.textContent = '✕';
+  closeBtn.style.cssText = `
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(102,126,234,0.4);
+  `;
+
+  header.appendChild(title);
+  header.appendChild(closeBtn);
+
+  // Modal textarea (separate element, synced with original)
+  const modalTa = document.createElement('textarea');
+  modalTa.style.cssText = `
+    display: block;
+    width: 100%;
+    height: 50vh;
+    resize: vertical;
+    padding: 12px;
+    font-size: 14px;
+    font-family: helvetica, sans-serif;
+    border: 1px solid #c8c2cc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background: #fafafa;
+    color: #333;
+    outline: none;
+  `;
+  modalTa.placeholder = 'Enter notes...';
+
+  modal.appendChild(header);
+  modal.appendChild(modalTa);
+  backdrop.appendChild(modal);
+  document.body.appendChild(backdrop);
+
+  function openModal() {
+    // Copy current content from original into modal
+    modalTa.value = originalTa.value;
+    backdrop.style.display = 'flex';
+    modalTa.focus();
   }
 
-  function collapse() {
-    ta.classList.remove('expanded-textarea');
-    // Clear all inline styles set during expand
-    ta.style.cssText = '';
-    overlay.style.display = 'none';
+  function closeModal() {
+    // Copy content back to original on close
+    originalTa.value = modalTa.value;
+    backdrop.style.display = 'none';
   }
 
-  // Expand on focus or click
-  ta.addEventListener('focus', expand);
+  // Keep original in sync while typing in modal
+  modalTa.addEventListener('input', function() {
+    originalTa.value = modalTa.value;
+  });
 
-  // Prevent clicks inside the textarea from bubbling to the document listener
-  ta.addEventListener('click', function(e) {
-    e.stopPropagation();
-    if (!ta.classList.contains('expanded-textarea')) {
-      expand();
+  // Keep modal in sync if user types in original textarea
+  originalTa.addEventListener('input', function() {
+    if (backdrop.style.display === 'flex') {
+      modalTa.value = originalTa.value;
     }
   });
 
-  // Clicking the overlay collapses - stopPropagation prevents bubbling to document
-  overlay.addEventListener('click', function(e) {
+  openBtn.addEventListener('click', function(e) {
     e.stopPropagation();
-    collapse();
+    openModal();
   });
 
-  // Only collapse if click is outside textarea AND outside overlay
-  document.addEventListener('click', function(e) {
-    if (ta.classList.contains('expanded-textarea') && !ta.contains(e.target) && e.target !== overlay) {
-      collapse();
-    }
+  closeBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    closeModal();
   });
 
-  // Escape key also collapses
+  backdrop.addEventListener('click', function(e) {
+    if (e.target === backdrop) closeModal();
+  });
+
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && ta.classList.contains('expanded-textarea')) {
-      collapse();
-    }
+    if (e.key === 'Escape' && backdrop.style.display === 'flex') closeModal();
   });
 })();
 
