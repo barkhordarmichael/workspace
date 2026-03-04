@@ -151,7 +151,7 @@ a:active{
 .grid-container{
 	width: 100%;
 	display: grid;
-	grid-template-columns: 470px 1fr;
+	grid-template-columns: 570px 1fr;
 	
   	
 }
@@ -244,7 +244,11 @@ li:hover{
 .btn:hover{
 	background-color: darken;
 }
-
+.cbbtn{
+  border-radius: 5px;
+  border: none;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
 .callbacks tr td{
   border: none;
   width: auto;
@@ -445,7 +449,7 @@ h3{
 
 }
 table{
-  width: 80%;
+  width: 100%;
   margin: auto;
 }
 tr td{
@@ -793,18 +797,18 @@ td{
                 <table class="callbacks">
           
                   <tr>
-                    <td><button class="btn" type="button" onclick="myFunction()"> Check happy with quote</button>
+                    <td><button class="cbbtn" type="button" onclick="myFunction()"> Check happy with quote</button>
                       <input type="text" id="happyWithQuote" value="Check happy with quote" style="display:none"></td>
-                       <td><button class="btn" type="button" onclick="myFunction2()"> Call to take payment</button>
+                       <td><button class="cbbtn" type="button" onclick="myFunction2()"> Call to take payment</button>
                       <input type="text" id="takePayment" value="Callback to take payment" style="display:none"></td>
-                      <td><button class="btn" type="button" onclick="myFunction3()">Review quote</button><input type="text" id="reviewQuote" value="Review quote" style="display:none"></td>
+                      <td><button class="cbbtn" type="button" onclick="myFunction3()">Review quote</button><input type="text" id="reviewQuote" value="Review quote" style="display:none"></td>
                   </tr>
                  
                   <tr>
                     
-                     <td><button class="btn" type="button" onclick="myFunction4()"> Check received docs</button>
+                     <td><button class="cbbtn" type="button" onclick="myFunction4()"> Check received docs</button>
                       <input type="text" id="receivedDocs" value="Check received docs" style="display:none"></td>
-                      <td><button class="btn" type="button" onclick="myFunction5()"> Callback arranged</button>
+                      <td><button class="cbbtn" type="button" onclick="myFunction5()"> Callback arranged</button>
                       <input type="text" id="callBack" value="Callback arranged" style="display:none"></td>
                   </tr>
                   
