@@ -845,6 +845,7 @@ td{
 
   /*Weather widget*/
   const cards = document.getElementById("cards");
+  let activeWeatherLocation = null;
 
 function emoji(code){
   if(code===0) return "☀️";
@@ -893,6 +894,22 @@ function render(daily){
   }
 }
 
+async function loadWeatherByLocation(lat, lon){
+  const wx = await fetchWeather(lat, lon);
+  render(wx.daily);
+}
+
+async function loadWeatherByCity(name){
+  const city = await fetchCity(name);
+  activeWeatherLocation = { latitude: city.latitude, longitude: city.longitude };
+  await loadWeatherByLocation(city.latitude, city.longitude);
+}
+
+async function refreshWeatherWidget(){
+  if(!activeWeatherLocation) return;
+  await loadWeatherByLocation(activeWeatherLocation.latitude, activeWeatherLocation.longitude);
+}
+
 document.getElementById("searchForm").addEventListener("submit", async (e)=>{
   e.preventDefault();
   const q = document.getElementById("cityInput").value.trim();
@@ -901,9 +918,7 @@ document.getElementById("searchForm").addEventListener("submit", async (e)=>{
   cards.innerHTML = "<div style='padding:6px;color:#777'>Loading…</div>";
 
   try {
-    const city = await fetchCity(q);
-    const wx = await fetchWeather(city.latitude, city.longitude);
-    render(wx.daily);
+    await loadWeatherByCity(q);
   } catch {
     cards.innerHTML = "<div style='padding:6px;color:#b33'>City not found</div>";
   }
@@ -911,10 +926,11 @@ document.getElementById("searchForm").addEventListener("submit", async (e)=>{
 
 // Default: London
 (async function(){
-  const c = await fetchCity("London");
-  const wx = await fetchWeather(c.latitude, c.longitude);
-  render(wx.daily);
+  await loadWeatherByCity("London");
 })();
+
+// Auto-refresh weather every 4 hours.
+setInterval(refreshWeatherWidget, 4 * 60 * 60 * 1000);
   
   /*BBC news widget*/
 const RSS_URL = "https://feeds.bbci.co.uk/news/rss.xml";
