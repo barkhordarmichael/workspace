@@ -775,36 +775,36 @@ td{
                   <td><input type="text" id="copyOfPremium" size="10" placeholder="Premium1" onchange="calculateOverride()"></td>
                     <td><input type="text" id="aaf" size="10" placeholder="AAF" onchange="calculateOverride()"></td>
                     
-                  <td><input type="text" id="result" placeholder="results"></td>
-                  <td style="size:15"><input type="text" id="monthly1" size="15" placeholder="results"> </td>
+                  <td><input type="text" id="result" placeholder="results" disabled="true"></td>
+                  <td style="size:15"><input type="text" id="monthly1" size="15" placeholder="results" disabled="true"> </td>
               </tr>
               <tr>
                   <td>Divide</td>
                   <td><input id="premium"type="text"></td>
                   <td><input id="division" onfocusout="calculateDivision()"type="text" value="12"></td>
-                  <td><input id="output"type="text"></td>
-                  <td><input type="text" id="monthly2" size="15" placeholder="results"> </td>
+                  <td><input id="output"type="text" disabled="true"></td>
+                  <td><input type="text" id="monthly2" size="15" placeholder="results" disabled="true"> </td>
               </tr>
               <tr>
                   <td>Discount</td>
                   <td><input type="text" id="premium2" size="10" placeholder="Premium"></td>
                     <td><input type="text" id="discountPercentage" size="10" placeholder="Discount" onfocusout="calculateDiscount()"></td>
-                    <td><input type="text" id="discount" size="10"></td>
-                  <td><input type="text" id="monthly3" size="15" placeholder="results"> </td>
+                    <td><input type="text" id="discount" size="10" disabled="true"></td>
+                  <td><input type="text" id="monthly3" size="15" placeholder="results" disabled="true"> </td>
               </tr>
               <tr>
                   <td>Extra Months</td>
                   <td><input id="months" type="text"></td>
                   <td><input id= "noOfMonths" onfocusout="calculateExtraMonths()"type="text" value="12"></td>
-                  <td><input id="extraMonths" onfocusout="calculateExtraMonths()"type="text"></td>
-                  <td><input type="text" id="monthly4" size="15" placeholder="results"> </td>
+                  <td><input id="extraMonths" onfocusout="calculateExtraMonths()"type="text" disabled="true"></td>
+                  <td><input type="text" id="monthly4" size="15" placeholder="results" disabled="true"> </td>
               </tr>
               <tr>
                   <td>Web/Quote</td>
                   <td><input id ="quote" type="text"></td>
                   <td><input id ="web" onkeyup="calculateDiffInprice()" type="text"></td>
-                  <td><input id="price_diff" type="text"></td>
-                  <td><input type="text" id="monthly5" size="15" placeholder="results"> </td>
+                  <td><input id="price_diff" type="text" disabled="true"></td>
+                  <td><input type="text" id="monthly5" size="15" disabled="true"> </td>
               </tr>
               
               
@@ -1016,7 +1016,7 @@ function appendDigit(digit) {
   function clearDisplay() {
     document.getElementById("display").value = "";
   }
-
+  // Calculate table
   function calculateOverride() {
     let a = document.getElementById("copyOfPremium").value;
     document.getElementById("premium").value = a;
@@ -1032,14 +1032,14 @@ function appendDigit(digit) {
     document.getElementById("monthly2").value = (a/12).toFixed(2);
     document.getElementById("monthly3").value = (a/12).toFixed(2);
     document.getElementById("monthly4").value = (a/12).toFixed(2);
-    document.getElementById("monthly5").value = (a/12).toFixed(2);
+    //document.getElementById("monthly5").value = (a/12).toFixed(2);
 }
 
 function calculateExtraMonths(){
   let nOfMonths = document.getElementById("noOfMonths").value;
   let premium = document.getElementById("months").value;
   let result = premium/nOfMonths;
-  let valueOfMonths = (nOfMonths-12)*result;
+  let valueOfMonths = (nOfMonths-12)*result.toFixed(2);
   document.getElementById("extraMonths").value = valueOfMonths.toFixed(2);
   document.getElementById("monthly4").value = premium-valueOfMonths.toFixed(2);
 }
@@ -1056,6 +1056,7 @@ function calculateDiscount() {
   var discount = document.getElementById("discountPercentage").value;
   var result = (discount / 100) * a;
   document.getElementById("discount").value = (a - result).toFixed(2);
+  document.getElementById("monthly3").value = ((a - result) / 12).toFixed(2);
 }
 
 function calculateDiffInprice(){
