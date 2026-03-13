@@ -8,11 +8,10 @@
         *{
 	padding: 0;
 	margin: 0;
-	a{
-		text-decoration: none;
-		color: white;
-    
-	}
+}
+a{
+	text-decoration: none;
+	color: white;
 }
 
 body{
@@ -149,7 +148,7 @@ nav ul{
  
 
 a:active{
-	color: none;
+	color: inherit;
 
 }
 
@@ -235,7 +234,7 @@ td, th, input {
   padding: 1px;
   font-size: 12px;
   border-radius: 5px;
-  background-color: none;
+  background-color: transparent;
 	
 	
   
@@ -247,7 +246,7 @@ li:hover{
 
 }
 .btn:hover{
-	background-color: darken;
+  filter: brightness(0.9);
 }
 .cbbtn{
   border-radius: 5px;
@@ -661,17 +660,15 @@ td{
   
       
         <nav>
-          
           <ul>
-            <li id="month_ext" class="btn" onmouseover="monthExt()" onmouseleave="monthExtClear()">Extension terms<ul>
+            <li id="month_ext" class="btn" onmouseover="monthExt()" onmouseleave="monthExtClear()">Extension terms
+              <ul>
                 <li id="month_ext_dropdown" class="dropdown-box">
                   <p>If you choose to cancel your policy or downgrade within the first 12 months you will lose this benefit and not be able to re-claim or re-start the policy extension.<br>
                     The policy extension will be added at month 13. If you pay on a rolling monthly basis, you must make 12 consecutive payments at full price, and must have active cover at month 12.
                     </p>
                 </li>
-            
               </ul>
-            
             </li>
             <li class="btn"><a href="https://www.rac.co.uk/breakdown-cover" target="_blank">Launch RAC</a></li>
             <li class="btn"><a href="https://www.theaa.com/breakdown-cover/uk" target="_blank">Launch AA</a></li>
@@ -679,12 +676,11 @@ td{
             <li class="btn"><a href="http://pgbge1pvp001/EcarWebpage/ECarMain.aspx" target="_blank">Ecars</a></li>
             <li class="btn"><a href="https://rewards.rac.co.uk/rac" target="_blank">Member benfits</a></li>
             <li class="btn" id="proof-points"><a href="#">Proof points</a></li>
-            <li class="btn" id="competitor-comparison"><a href="#"></a>Competitor comparison</a></li>
-          
+            <li class="btn" id="competitor-comparison"><a href="#">Competitor comparison</a></li>
           </ul>
-         <div>
-           <!--Proof points popup-->
-          
+        </nav>
+
+        <!--Proof points popup-->
 <div class="proof-point-container dark-blue-font" id="container">
   <button id="closer">Close</button>
   <div class="proof-point-container-div-one">
@@ -748,13 +744,6 @@ td{
   
          </div>
 </div>
-
-</nav>
-        
-        
-        
-        </ul>
-        </nav>
   <div>  
         
             
