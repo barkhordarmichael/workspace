@@ -155,7 +155,7 @@ a:active{
 .grid-container{
 	width: 100%;
 	display: grid;
-	grid-template-columns: 570px 1fr;
+	grid-template-columns: 500px 300px 1fr;
 	
   	
 }
@@ -637,6 +637,98 @@ td{
     text-decoration: underline;
     background: #f2f2f2;
   }
+
+  /*Real calculator*/
+  .calc {
+      width: 300px;
+      background: #ffffff;
+      border: 0.5px solid #ddd;
+      /*border-radius: 20px;*/
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      margin-left: 15px;
+    }
+ 
+    .display {
+      padding: 1.5rem 1.5rem 1rem;
+      background: #f9f9f7;
+      border-bottom: 0.5px solid #ddd;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+ 
+    .display .history {
+      font-size: 13px;
+      color: #999;
+      min-height: 20px;
+      text-align: right;
+      word-break: break-all;
+    }
+ 
+    .display .current {
+      font-size: 36px;
+      font-weight: 500;
+      color: #111;
+      text-align: right;
+      word-break: break-all;
+      line-height: 1.2;
+      transition: font-size 0.1s;
+    }
+ 
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+ 
+    .calc-key {
+      font-family: 'DM Mono', monospace;
+      font-size: 16px;
+      font-weight: 400;
+      border: none;
+      border-right: 0.5px solid #e5e5e5;
+      border-bottom: 0.5px solid #e5e5e5;
+      background: #ffffff;
+      color: #111;
+      padding: 0;
+      height: 68px;
+      cursor: pointer;
+      transition: background 0.1s, transform 0.08s;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+ 
+    .calc-key:nth-child(4n) { border-right: none; }
+    .keypad .calc-key:nth-last-child(-n+4) { border-bottom: none; }
+ 
+    .calc-key:hover { background: #f5f5f0; }
+    .calc-key:active, .calc-key.calc-key--pressed { background: #ebebeb; transform: scale(0.96); }
+ 
+    .calc-key.calc-key--op { color: #185FA5; font-weight: 500; }
+    .calc-key.calc-key--action { color: #666; font-size: 14px; }
+ 
+    .calc-key.calc-key--equals {
+      background: #185FA5;
+      color: #E6F1FB;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    .calc-key.calc-key--equals:hover { background: #378ADD; }
+    .calc-key.calc-key--equals:active { background: #0C447C; }
+ 
+    .calc-key.calc-key--zero { grid-column: span 2; }
+ 
+    .key-hint {
+      text-align: center;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: #aaa;
+      padding: 0.6rem;
+      border-top: 0.5px solid #e5e5e5;
+    }
     </style>
 </head>
 <body>
@@ -756,7 +848,7 @@ td{
                   <td>Premium</td>
                   <td>Calculations</td>
                   <td>Results</td>
-                            <td>Monthly/12</td>
+                  <td>Monthly/12</td>
                   
               </tr>
               <tr>
@@ -840,7 +932,38 @@ td{
                 </div>
                             
               
-                  
+                  <div class="calc">
+  <div class="display">
+    <div class="history" id="history"></div>
+    <div class="current" id="current">0</div>
+  </div>
+  <div class="keypad">
+    <button class="calc-key calc-key--action" data-action="clear">AC</button>
+    <button class="calc-key calc-key--action" data-action="sign">+/−</button>
+    <button class="calc-key calc-key--action" data-action="percent">%</button>
+    <button class="calc-key calc-key--op" data-action="div">÷</button>
+ 
+    <button class="calc-key" data-num="7">7</button>
+    <button class="calc-key" data-num="8">8</button>
+    <button class="calc-key" data-num="9">9</button>
+    <button class="calc-key calc-key--op" data-action="mul">×</button>
+ 
+    <button class="calc-key" data-num="4">4</button>
+    <button class="calc-key" data-num="5">5</button>
+    <button class="calc-key" data-num="6">6</button>
+    <button class="calc-key calc-key--op" data-action="sub">−</button>
+ 
+    <button class="calc-key" data-num="1">1</button>
+    <button class="calc-key" data-num="2">2</button>
+    <button class="calc-key" data-num="3">3</button>
+    <button class="calc-key calc-key--op" data-action="add">+</button>
+ 
+    <button class="calc-key calc-key--zero" data-num="0">0</button>
+    <button class="calc-key" data-action="dot">.</button>
+    <button class="calc-key calc-key--equals" data-action="equals">=</button>
+  </div>
+  <div class="key-hint">keyboard supported</div>
+</div>
               
         
                     <iframe  src="https://apps.powerapps.com/play/e/default-daf62abb-9a6c-4f5d-b141-a1c95a4ead9d/a/b5a8af2c-82ee-462f-8652-d8297fbd1425?tenantId=daf62abb-9a6c-4f5d-b141-a1c95a4ead9d&source=portal&screenColor=rgba%2881%2C+92%2C+107%2C+1%29&skipAppMetadata=true#%23%23%23%23%23%23">
@@ -858,6 +981,9 @@ td{
   /*Weather widget*/
   const cards = document.getElementById("cards");
   let activeWeatherLocation = null;
+  const showStatus = (text) => {
+    cards.innerHTML = `<div style="padding:6px;color:#777">${text}</div>`;
+  };
 
 function emoji(code){
   if(code===0) return "☀️";
@@ -927,18 +1053,25 @@ document.getElementById("searchForm").addEventListener("submit", async (e)=>{
   const q = document.getElementById("cityInput").value.trim();
   if(!q) return;
 
-  cards.innerHTML = "<div style='padding:6px;color:#777'>Loading…</div>";
+  showStatus("Loading…");
 
   try {
     await loadWeatherByCity(q);
-  } catch {
-    cards.innerHTML = "<div style='padding:6px;color:#b33'>City not found</div>";
+  } catch (err) {
+    console.error("Weather search failed", err);
+    showStatus("City not found or service unavailable");
   }
 });
 
 // Default: London
 (async function(){
-  await loadWeatherByCity("London");
+  showStatus("Loading…");
+  try{
+    await loadWeatherByCity("London");
+  }catch(err){
+    console.error("Weather init failed", err);
+    showStatus("Weather service unavailable");
+  }
 })();
 
 // Auto-refresh weather every 4 hours.
@@ -1275,6 +1408,122 @@ function monthExtClear(){
     if (e.key === 'Escape' && backdrop.style.display === 'flex') closeModal();
   });
 })();
-
+//Real caclulator script
+const currentEl = document.getElementById('current');
+  const historyEl = document.getElementById('history');
+ 
+  let state = { current: '0', prev: null, op: null, justEvaled: false };
+ 
+  function fmt(n) {
+    if (n === null || n === undefined) return '0';
+    const s = String(n);
+    if (s.length > 12) {
+      const f = parseFloat(n);
+      if (Math.abs(f) > 1e12 || (Math.abs(f) < 1e-6 && f !== 0)) {
+        return parseFloat(f.toExponential(4)).toString();
+      }
+      return parseFloat(f.toPrecision(10)).toString();
+    }
+    return s;
+  }
+ 
+  function render() {
+    const val = state.current;
+    currentEl.textContent = fmt(val);
+    const len = fmt(val).length;
+    currentEl.style.fontSize = len > 14 ? '20px' : len > 10 ? '26px' : '36px';
+  }
+ 
+  function applyNum(n) {
+    if (state.justEvaled) { state.current = String(n); state.justEvaled = false; }
+    else if (state.current === '0') { state.current = String(n); }
+    else if (state.current.length < 12) { state.current += String(n); }
+    render();
+  }
+ 
+  function applyDot() {
+    if (state.justEvaled) { state.current = '0.'; state.justEvaled = false; }
+    else if (!state.current.includes('.')) { state.current += '.'; }
+    render();
+  }
+ 
+  function opSymbol(op) {
+    return { add: '+', sub: '−', mul: '×', div: '÷' }[op] || '';
+  }
+ 
+  function setOp(op) {
+    if (state.op && state.prev !== null && !state.justEvaled) evaluate();
+    state.prev = parseFloat(state.current);
+    state.op = op;
+    state.justEvaled = true;
+    historyEl.textContent = fmt(state.prev) + ' ' + opSymbol(op);
+  }
+ 
+  function evaluate() {
+    if (state.op === null || state.prev === null) return;
+    const a = state.prev, b = parseFloat(state.current);
+    let result;
+    if (state.op === 'add') result = a + b;
+    else if (state.op === 'sub') result = a - b;
+    else if (state.op === 'mul') result = a * b;
+    else if (state.op === 'div') result = b === 0 ? 'Error' : a / b;
+    historyEl.textContent = fmt(a) + ' ' + opSymbol(state.op) + ' ' + fmt(b) + ' =';
+    state.current = String(result === 'Error' ? 'Error' : parseFloat(result.toPrecision(12)));
+    state.prev = null; state.op = null; state.justEvaled = true;
+    render();
+  }
+ 
+  function handleAction(action) {
+    if (action === 'clear') {
+      state = { current: '0', prev: null, op: null, justEvaled: false };
+      historyEl.textContent = '';
+      render();
+    } else if (action === 'sign') {
+      state.current = String(parseFloat(state.current) * -1); render();
+    } else if (action === 'percent') {
+      state.current = String(parseFloat(state.current) / 100); render();
+    } else if (action === 'dot') { applyDot(); }
+    else if (action === 'equals') { evaluate(); }
+    else if (['add','sub','mul','div'].includes(action)) { setOp(action); }
+  }
+ 
+  document.querySelectorAll('.calc-key').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.dataset.num !== undefined) applyNum(btn.dataset.num);
+      else if (btn.dataset.action) handleAction(btn.dataset.action);
+    });
+  });
+ 
+  const keyMap = {
+    '0':'0','1':'1','2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9',
+    '+':'add','-':'sub','*':'mul','/':'div','Enter':'equals','=':'equals',
+    'Backspace':'backspace','Escape':'clear','%':'percent','.':'dot'
+  };
+ 
+  document.addEventListener('keydown', e => {
+    const mapped = keyMap[e.key];
+    if (!mapped) return;
+    e.preventDefault();
+    if (mapped === 'backspace') {
+      if (state.current.length > 1) state.current = state.current.slice(0, -1);
+      else state.current = '0';
+      render();
+    } else if ('0123456789'.includes(mapped)) {
+      applyNum(mapped);
+    } else {
+      handleAction(mapped);
+    }
+    const actionMap = {
+      'add':'[data-action="add"]','sub':'[data-action="sub"]',
+      'mul':'[data-action="mul"]','div':'[data-action="div"]',
+      'equals':'[data-action="equals"]','clear':'[data-action="clear"]',
+      'dot':'[data-action="dot"]','percent':'[data-action="percent"]'
+    };
+    const sel = actionMap[mapped] || (mapped.length === 1 ? `[data-num="${mapped}"]` : null);
+    if (sel) {
+      const b = document.querySelector(sel);
+      if (b) { b.classList.add('calc-key--pressed'); setTimeout(() => b.classList.remove('calc-key--pressed'), 120); }
+    }
+  });
 </script>
 </html>
