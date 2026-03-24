@@ -155,7 +155,7 @@ a:active{
 .grid-container{
 	width: 100%;
 	display: grid;
-	grid-template-columns: 500px 300px 1fr;
+	grid-template-columns: 550px 1fr;
 	
   	
 }
@@ -932,38 +932,7 @@ td{
                 </div>
                             
               
-                  <div class="calc">
-  <div class="display">
-    <div class="history" id="history"></div>
-    <div class="current" id="current">0</div>
-  </div>
-  <div class="keypad">
-    <button class="calc-key calc-key--action" data-action="clear">AC</button>
-    <button class="calc-key calc-key--action" data-action="sign">+/−</button>
-    <button class="calc-key calc-key--action" data-action="percent">%</button>
-    <button class="calc-key calc-key--op" data-action="div">÷</button>
- 
-    <button class="calc-key" data-num="7">7</button>
-    <button class="calc-key" data-num="8">8</button>
-    <button class="calc-key" data-num="9">9</button>
-    <button class="calc-key calc-key--op" data-action="mul">×</button>
- 
-    <button class="calc-key" data-num="4">4</button>
-    <button class="calc-key" data-num="5">5</button>
-    <button class="calc-key" data-num="6">6</button>
-    <button class="calc-key calc-key--op" data-action="sub">−</button>
- 
-    <button class="calc-key" data-num="1">1</button>
-    <button class="calc-key" data-num="2">2</button>
-    <button class="calc-key" data-num="3">3</button>
-    <button class="calc-key calc-key--op" data-action="add">+</button>
- 
-    <button class="calc-key calc-key--zero" data-num="0">0</button>
-    <button class="calc-key" data-action="dot">.</button>
-    <button class="calc-key calc-key--equals" data-action="equals">=</button>
-  </div>
-  <div class="key-hint">keyboard supported</div>
-</div>
+                 
               
         
                     <iframe  src="https://apps.powerapps.com/play/e/default-daf62abb-9a6c-4f5d-b141-a1c95a4ead9d/a/b5a8af2c-82ee-462f-8652-d8297fbd1425?tenantId=daf62abb-9a6c-4f5d-b141-a1c95a4ead9d&source=portal&screenColor=rgba%2881%2C+92%2C+107%2C+1%29&skipAppMetadata=true#%23%23%23%23%23%23">
@@ -981,9 +950,6 @@ td{
   /*Weather widget*/
   const cards = document.getElementById("cards");
   let activeWeatherLocation = null;
-  const showStatus = (text) => {
-    cards.innerHTML = `<div style="padding:6px;color:#777">${text}</div>`;
-  };
 
 function emoji(code){
   if(code===0) return "☀️";
@@ -1053,25 +1019,18 @@ document.getElementById("searchForm").addEventListener("submit", async (e)=>{
   const q = document.getElementById("cityInput").value.trim();
   if(!q) return;
 
-  showStatus("Loading…");
+  cards.innerHTML = "<div style='padding:6px;color:#777'>Loading…</div>";
 
   try {
     await loadWeatherByCity(q);
-  } catch (err) {
-    console.error("Weather search failed", err);
-    showStatus("City not found or service unavailable");
+  } catch {
+    cards.innerHTML = "<div style='padding:6px;color:#b33'>City not found</div>";
   }
 });
 
 // Default: London
 (async function(){
-  showStatus("Loading…");
-  try{
-    await loadWeatherByCity("London");
-  }catch(err){
-    console.error("Weather init failed", err);
-    showStatus("Weather service unavailable");
-  }
+  await loadWeatherByCity("London");
 })();
 
 // Auto-refresh weather every 4 hours.
@@ -1408,91 +1367,7 @@ function monthExtClear(){
     if (e.key === 'Escape' && backdrop.style.display === 'flex') closeModal();
   });
 })();
-//Real caclulator script
-const currentEl = document.getElementById('current');
-  const historyEl = document.getElementById('history');
- 
-  let state = { current: '0', prev: null, op: null, justEvaled: false };
- 
-  function fmt(n) {
-    if (n === null || n === undefined) return '0';
-    const s = String(n);
-    if (s.length > 12) {
-      const f = parseFloat(n);
-      if (Math.abs(f) > 1e12 || (Math.abs(f) < 1e-6 && f !== 0)) {
-        return parseFloat(f.toExponential(4)).toString();
-      }
-      return parseFloat(f.toPrecision(10)).toString();
-    }
-    return s;
-  }
- 
-  function render() {
-    const val = state.current;
-    currentEl.textContent = fmt(val);
-    const len = fmt(val).length;
-    currentEl.style.fontSize = len > 14 ? '20px' : len > 10 ? '26px' : '36px';
-  }
- 
-  function applyNum(n) {
-    if (state.justEvaled) { state.current = String(n); state.justEvaled = false; }
-    else if (state.current === '0') { state.current = String(n); }
-    else if (state.current.length < 12) { state.current += String(n); }
-    render();
-  }
- 
-  function applyDot() {
-    if (state.justEvaled) { state.current = '0.'; state.justEvaled = false; }
-    else if (!state.current.includes('.')) { state.current += '.'; }
-    render();
-  }
- 
-  function opSymbol(op) {
-    return { add: '+', sub: '−', mul: '×', div: '÷' }[op] || '';
-  }
- 
-  function setOp(op) {
-    if (state.op && state.prev !== null && !state.justEvaled) evaluate();
-    state.prev = parseFloat(state.current);
-    state.op = op;
-    state.justEvaled = true;
-    historyEl.textContent = fmt(state.prev) + ' ' + opSymbol(op);
-  }
- 
-  function evaluate() {
-    if (state.op === null || state.prev === null) return;
-    const a = state.prev, b = parseFloat(state.current);
-    let result;
-    if (state.op === 'add') result = a + b;
-    else if (state.op === 'sub') result = a - b;
-    else if (state.op === 'mul') result = a * b;
-    else if (state.op === 'div') result = b === 0 ? 'Error' : a / b;
-    historyEl.textContent = fmt(a) + ' ' + opSymbol(state.op) + ' ' + fmt(b) + ' =';
-    state.current = String(result === 'Error' ? 'Error' : parseFloat(result.toPrecision(12)));
-    state.prev = null; state.op = null; state.justEvaled = true;
-    render();
-  }
- 
-  function handleAction(action) {
-    if (action === 'clear') {
-      state = { current: '0', prev: null, op: null, justEvaled: false };
-      historyEl.textContent = '';
-      render();
-    } else if (action === 'sign') {
-      state.current = String(parseFloat(state.current) * -1); render();
-    } else if (action === 'percent') {
-      state.current = String(parseFloat(state.current) / 100); render();
-    } else if (action === 'dot') { applyDot(); }
-    else if (action === 'equals') { evaluate(); }
-    else if (['add','sub','mul','div'].includes(action)) { setOp(action); }
-  }
- 
-  document.querySelectorAll('.calc-key').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (btn.dataset.num !== undefined) applyNum(btn.dataset.num);
-      else if (btn.dataset.action) handleAction(btn.dataset.action);
-    });
-  });
+
  
   const keyMap = {
     '0':'0','1':'1','2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9',
