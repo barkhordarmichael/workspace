@@ -98,6 +98,7 @@ nav ul{
         padding: 0;
         margin-left: 25px;
 		    object-fit: fill;
+        
     }
 	#tracker{
 		width: 100%;
@@ -161,6 +162,8 @@ a:active{
 }
 .grid-container > div{
 	height: 590px;
+  
+  
 }
 #cop{
 	width: 80px;
@@ -177,7 +180,7 @@ input[type=text] {
 }
 textarea{
 	height: 270px;
-	width: 97%;
+	width: 100%;
 	resize: none;
 	margin: 5px;
 	padding: 10px;
@@ -473,6 +476,7 @@ td{
 .table-calculator{
   width: 100%;
   margin-left: 10px;
+  
 }
 
 /* Style tab links */
@@ -1369,36 +1373,7 @@ function monthExtClear(){
 })();
 
  
-  const keyMap = {
-    '0':'0','1':'1','2':'2','3':'3','4':'4','5':'5','6':'6','7':'7','8':'8','9':'9',
-    '+':'add','-':'sub','*':'mul','/':'div','Enter':'equals','=':'equals',
-    'Backspace':'backspace','Escape':'clear','%':'percent','.':'dot'
-  };
- 
-  document.addEventListener('keydown', e => {
-    const mapped = keyMap[e.key];
-    if (!mapped) return;
-    e.preventDefault();
-    if (mapped === 'backspace') {
-      if (state.current.length > 1) state.current = state.current.slice(0, -1);
-      else state.current = '0';
-      render();
-    } else if ('0123456789'.includes(mapped)) {
-      applyNum(mapped);
-    } else {
-      handleAction(mapped);
-    }
-    const actionMap = {
-      'add':'[data-action="add"]','sub':'[data-action="sub"]',
-      'mul':'[data-action="mul"]','div':'[data-action="div"]',
-      'equals':'[data-action="equals"]','clear':'[data-action="clear"]',
-      'dot':'[data-action="dot"]','percent':'[data-action="percent"]'
-    };
-    const sel = actionMap[mapped] || (mapped.length === 1 ? `[data-num="${mapped}"]` : null);
-    if (sel) {
-      const b = document.querySelector(sel);
-      if (b) { b.classList.add('calc-key--pressed'); setTimeout(() => b.classList.remove('calc-key--pressed'), 120); }
-    }
-  });
+  
+  
 </script>
 </html>
