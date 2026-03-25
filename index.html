@@ -155,8 +155,10 @@ a:active{
 
 .grid-container{
 	width: 100%;
-	display: grid;
-	grid-template-columns: 550px 1fr;
+	display: flex;
+	
+  justify-content: center;
+  
 	
   	
 }
@@ -504,6 +506,57 @@ td{
   height: 100%;
   background: #fff;
 }
+
+/* Inline simple calculator */
+.simple-calc{
+  width: 320px;
+  max-height: 320px;
+  margin-left: 25px;
+  background:#ffffff;
+  border:1px solid #d8d8d8;
+  border-radius:12px;
+  padding:12px;
+  box-shadow:0 4px 18px rgba(0,0,0,0.08);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.simple-calc:focus-within{
+  outline:2px solid #764ba2;
+  outline-offset:4px;
+}
+.simple-calc__display{
+  background:#111;
+  color:#e9f7ff;
+  padding:12px;
+  border-radius:8px;
+  text-align:right;
+  font-family:'DM Mono','Fira Code',monospace;
+  font-size:22px;
+  min-height:44px;
+  letter-spacing:0.5px;
+}
+.simple-calc__keys{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+.simple-calc button{
+  height:42px;
+  border:none;
+  border-radius:8px;
+  background:#f1f1f5;
+  color:#222;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 1px 2px rgba(0,0,0,0.08);
+  transition:transform 0.08s ease, background 0.12s ease;
+}
+.simple-calc button:hover{ background:#e6e6ed; }
+.simple-calc button:active{ transform:scale(0.97); }
+.simple-calc button[data-op]{ background:#dfe8ff; color:#18448f; }
+.simple-calc button[data-eq]{ background:#764ba2; color:#fff; }
+.simple-calc button[data-action="clear"]{ background:#ffdfe0; color:#b2383b; }
 
 #Home {background-color: orange;}
 #News {background-color: green;}
@@ -936,9 +989,37 @@ td{
                 </div>
                             
               
-                 
-              
-        
+               
+                <!-- Inline simple calculator placed between controls and iframe -->
+                <div id="simple-calc" class="simple-calc" tabindex="0" aria-label="Quick calculator">
+                  <div class="simple-calc__display" id="simple-calc-display" aria-live="polite">0</div>
+                  <div class="simple-calc__keys">
+                    <button data-action="clear">AC</button>
+                    <button data-action="backspace">⌫</button>
+                    <button data-op="/">÷</button>
+                    <button data-op="*">×</button>
+
+                    <button data-num="7">7</button>
+                    <button data-num="8">8</button>
+                    <button data-num="9">9</button>
+                    <button data-op="-">−</button>
+
+                    <button data-num="4">4</button>
+                    <button data-num="5">5</button>
+                    <button data-num="6">6</button>
+                    <button data-op="+">+</button>
+
+                    <button data-num="1">1</button>
+                    <button data-num="2">2</button>
+                    <button data-num="3">3</button>
+                    <button data-eq="=">=</button>
+
+                    <button data-num="0" style="grid-column:span 2;">0</button>
+                    <button data-num=".">.</button>
+                    <button data-eq="=">=</button>
+                  </div>
+                </div>
+
                     <iframe  src="https://apps.powerapps.com/play/e/default-daf62abb-9a6c-4f5d-b141-a1c95a4ead9d/a/b5a8af2c-82ee-462f-8652-d8297fbd1425?tenantId=daf62abb-9a6c-4f5d-b141-a1c95a4ead9d&source=portal&screenColor=rgba%2881%2C+92%2C+107%2C+1%29&skipAppMetadata=true#%23%23%23%23%23%23">
                     
                     </iframe>
@@ -950,6 +1031,78 @@ td{
                           
 </body>
 <script>
+
+  /* Quick inline calculator (supports keyboard when focused) */
+  const simpleCalcEl = document.getElementById("simple-calc");
+  const simpleDisplay = document.getElementById("simple-calc-display");
+  let simpleExpr = "0";
+  let simpleActive = false;
+
+  function renderSimpleCalc() {
+    simpleDisplay.textContent = simpleExpr || "0";
+  }
+
+  function pushSimple(char) {
+    if (simpleExpr === "0" && /[0-9.]/.test(char)) {
+      simpleExpr = char;
+    } else {
+      simpleExpr += char;
+    }
+    renderSimpleCalc();
+  }
+
+  function clearSimple() {
+    simpleExpr = "0";
+    renderSimpleCalc();
+  }
+
+  function backspaceSimple() {
+    simpleExpr = simpleExpr.length > 1 ? simpleExpr.slice(0, -1) : "0";
+    renderSimpleCalc();
+  }
+
+  function evaluateSimple() {
+    try {
+      // Evaluate in a narrow context
+      const result = Function(`"use strict"; return (${simpleExpr})`)();
+      simpleExpr = (result ?? 0).toString();
+    } catch (err) {
+      simpleExpr = "Error";
+    }
+    renderSimpleCalc();
+  }
+
+  simpleCalcEl.addEventListener("focusin", () => simpleActive = true);
+  simpleCalcEl.addEventListener("focusout", () => simpleActive = false);
+  simpleCalcEl.addEventListener("click", () => simpleCalcEl.focus());
+
+  simpleCalcEl.querySelectorAll("[data-num]").forEach(btn => {
+    btn.addEventListener("click", () => pushSimple(btn.dataset.num));
+  });
+  simpleCalcEl.querySelectorAll("[data-op]").forEach(btn => {
+    btn.addEventListener("click", () => pushSimple(btn.dataset.op));
+  });
+  simpleCalcEl.querySelectorAll("[data-eq]").forEach(btn => {
+    btn.addEventListener("click", evaluateSimple);
+  });
+  simpleCalcEl.querySelectorAll("[data-action='clear']").forEach(btn => {
+    btn.addEventListener("click", clearSimple);
+  });
+  simpleCalcEl.querySelectorAll("[data-action='backspace']").forEach(btn => {
+    btn.addEventListener("click", backspaceSimple);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!simpleActive) return;
+    const { key } = e;
+    if (/^[0-9.]$/.test(key)) { e.preventDefault(); pushSimple(key); return; }
+    if (["+", "-", "*", "/"].includes(key)) { e.preventDefault(); pushSimple(key); return; }
+    if (key === "Enter" || key === "=") { e.preventDefault(); evaluateSimple(); return; }
+    if (key === "Backspace") { e.preventDefault(); backspaceSimple(); return; }
+    if (key === "Escape") { e.preventDefault(); clearSimple(); return; }
+  });
+
+  renderSimpleCalc();
 
   /*Weather widget*/
   const cards = document.getElementById("cards");
