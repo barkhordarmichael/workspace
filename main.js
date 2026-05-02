@@ -11,7 +11,14 @@ function appendDigit(digit) {
   function calculate() {
     try {
       let result = eval(document.getElementById("display").value);
-      document.getElementById("display").value = result.toFixed(2);
+      if (!isFinite(result) || isNaN(result)) {
+        document.getElementById("display").value = "Error";
+        return;
+      }
+      const formatted = Number.isInteger(result)
+        ? result.toString()
+        : result.toFixed(5).replace(/\.0+$|(?<=\.[0-9]*?)0+$/, "");
+      document.getElementById("display").value = formatted;
     } catch (error) {
       document.getElementById("display").value = "Error";
     }
